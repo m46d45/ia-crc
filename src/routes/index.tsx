@@ -5,6 +5,7 @@ import { ACTIVITIES, LINKS, PHOTOS, PROJECTS, RWGS, STATS, newsByDate } from "@/
 import { mergeNews, readLocalPublications, type Publication } from "@/data/publications";
 import { useI18n } from "@/i18n/provider";
 import { Button } from "@/components/ui/button";
+import { NewsMeta } from "@/components/news-meta";
 import { listPublications } from "@/lib/publication-fns";
 
 export const Route = createFileRoute("/")({
@@ -81,7 +82,7 @@ function Home() {
                   params={{ slug: item.slug }}
                   className="block rounded-xl border border-line bg-surface p-6 shadow-card transition-colors hover:border-navy/25"
                 >
-                  <p className="text-xs font-medium uppercase tracking-[0.14em] text-blue">{item.date}</p>
+                  <NewsMeta date={item.date} category={item.category} />
                   <h3 className="mt-2 font-display text-2xl font-medium text-navy">{item.title}</h3>
                   <p className="mt-3 max-w-3xl text-muted">{item.excerpt}</p>
                   <span className="mt-4 inline-flex items-center gap-1.5 text-sm font-medium text-navy">

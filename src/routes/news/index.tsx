@@ -2,6 +2,7 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { ArrowRight } from "lucide-react";
 import { useEffect, useMemo, useState } from "react";
 import { PageIntro } from "@/components/site-shell";
+import { NewsMeta } from "@/components/news-meta";
 import { mergeNews, readLocalPublications, type Publication } from "@/data/publications";
 import { newsByDate } from "@/data/site";
 import { useI18n } from "@/i18n/provider";
@@ -38,7 +39,7 @@ function NewsIndex() {
                 params={{ slug: item.slug }}
                 className="block rounded-xl border border-line bg-surface p-6 shadow-card transition-colors hover:border-navy/25"
               >
-                <p className="text-xs font-medium uppercase tracking-[0.14em] text-blue">{item.date}</p>
+                <NewsMeta date={item.date} category={item.category} />
                 <h2 className="mt-2 font-display text-2xl font-medium text-navy">{item.title}</h2>
                 <p className="mt-3 max-w-3xl text-muted">{item.excerpt}</p>
                 <span className="mt-4 inline-flex items-center gap-1.5 text-sm font-medium text-navy">

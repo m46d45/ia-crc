@@ -2,6 +2,7 @@ import { createFileRoute, Link, notFound } from "@tanstack/react-router";
 import { ArrowLeft, ArrowUpRight } from "lucide-react";
 import { useEffect, useState } from "react";
 import { Button } from "@/components/ui/button";
+import { NewsMeta } from "@/components/news-meta";
 import { publicationToNews, readLocalPublications, type NewsItem } from "@/data/publications";
 import { newsBySlug } from "@/data/site";
 import { useI18n } from "@/i18n/provider";
@@ -52,7 +53,9 @@ function NewsArticle() {
             <ArrowLeft className="size-4" />
             {t.newsPage.back}
           </Link>
-          <p className="mt-6 text-xs font-medium uppercase tracking-[0.16em] text-paper/55">{item.date}</p>
+          <div className="mt-6">
+            <NewsMeta date={item.date} category={item.category} light />
+          </div>
           <h1 className="mt-3 font-display text-3xl font-medium tracking-tight sm:text-4xl">{item.title}</h1>
         </div>
       </article>

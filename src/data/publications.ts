@@ -16,7 +16,7 @@ export type Publication = {
   createdAt: string;
 };
 
-export type NewsItem = (typeof NEWS)[number] & { source?: "editorial" | "publication" };
+export type NewsItem = (typeof NEWS)[number];
 
 const LOCAL_KEY = "ia-crc-publications-v1";
 
@@ -51,7 +51,8 @@ export function publicationToNews(p: Publication): NewsItem {
     slug: `pub-${p.id}`,
     date: formatDisplayDate(p.createdAt),
     dateSort: p.createdAt.slice(0, 10),
-    title: `New publication: ${p.title}`,
+    category: "publication",
+    title: p.title,
     excerpt: `${p.authors} (${year}). Added by ${p.submitterName}.`,
     body: [
       citation,
@@ -64,7 +65,6 @@ export function publicationToNews(p: Publication): NewsItem {
     ],
     href: p.url,
     hrefLabel: p.doi ? `doi:${p.doi}` : "Open the paper",
-    source: "publication",
   };
 }
 

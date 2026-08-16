@@ -79,6 +79,11 @@ export const COPY = {
       visit: "Open the conference site",
       notFound: "That article is not on this site.",
     },
+    newsCategory: {
+      conference: "Conference",
+      publication: "Publication",
+      announcement: "Announcement",
+    },
     publicationsPage: {
       title: "Publications",
       intro:
@@ -403,6 +408,11 @@ export const COPY = {
       back: "Semua berita",
       visit: "Buka situs konferensi",
       notFound: "Artikel itu tidak ada di situs ini.",
+    },
+    newsCategory: {
+      conference: "Konferensi",
+      publication: "Publikasi",
+      announcement: "Pengumuman",
     },
     publicationsPage: {
       title: "Publikasi",

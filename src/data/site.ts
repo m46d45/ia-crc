@@ -350,6 +350,7 @@ export const NEWS: {
   slug: string;
   date: string;
   dateSort: string;
+  category: "conference" | "publication" | "announcement";
   title: string;
   excerpt: string;
   body: string[];
@@ -360,6 +361,7 @@ export const NEWS: {
     slug: "ia-crc-supports-go-build-2026",
     date: "17 August 2026",
     dateSort: "2026-08-17",
+    category: "conference",
     title: "IA-CRC supports GO BUILD 2026 and encourages members to take part",
     excerpt:
       "The forum endorses the 1st International Online Conference on Sustainable Construction and invites members to present, attend, and connect.",
