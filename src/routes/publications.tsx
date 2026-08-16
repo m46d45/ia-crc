@@ -10,7 +10,7 @@ import {
   type Publication,
 } from "@/data/publications";
 import { useI18n } from "@/i18n/provider";
-import { listPublications } from "@/lib/publications.server";
+import { listPublications } from "@/lib/publication-fns";
 
 type CitePreview = {
   doi: string | null;

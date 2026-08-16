@@ -5,7 +5,7 @@ import { ACTIVITIES, LINKS, PHOTOS, PROJECTS, RWGS, STATS, newsByDate } from "@/
 import { mergeNews, readLocalPublications, type Publication } from "@/data/publications";
 import { useI18n } from "@/i18n/provider";
 import { Button } from "@/components/ui/button";
-import { listPublications } from "@/lib/publications.server";
+import { listPublications } from "@/lib/publication-fns";
 
 export const Route = createFileRoute("/")({
   loader: () => listPublications(),

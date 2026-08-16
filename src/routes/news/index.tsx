@@ -5,7 +5,7 @@ import { PageIntro } from "@/components/site-shell";
 import { mergeNews, readLocalPublications, type Publication } from "@/data/publications";
 import { newsByDate } from "@/data/site";
 import { useI18n } from "@/i18n/provider";
-import { listPublications } from "@/lib/publications.server";
+import { listPublications } from "@/lib/publication-fns";
 
 export const Route = createFileRoute("/news/")({
   loader: () => listPublications(),

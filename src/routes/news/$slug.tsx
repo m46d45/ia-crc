@@ -5,7 +5,7 @@ import { Button } from "@/components/ui/button";
 import { publicationToNews, readLocalPublications, type NewsItem } from "@/data/publications";
 import { newsBySlug } from "@/data/site";
 import { useI18n } from "@/i18n/provider";
-import { listPublications } from "@/lib/publications.server";
+import { listPublications } from "@/lib/publication-fns";
 
 export const Route = createFileRoute("/news/$slug")({
   loader: async ({ params }) => {
