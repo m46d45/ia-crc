@@ -1,4 +1,5 @@
 import type { NEWS } from "./site";
+import catalog from "./member-publications.json";
 
 export type Publication = {
   id: string;
@@ -19,7 +20,7 @@ export type NewsItem = (typeof NEWS)[number] & { source?: "editorial" | "publica
 
 const LOCAL_KEY = "ia-crc-publications-v1";
 
-export const SEEDED_PUBLICATIONS: Publication[] = [];
+export const SEEDED_PUBLICATIONS: Publication[] = catalog as Publication[];
 
 export function extractDoi(input: string): string | null {
   const trimmed = input.trim();
