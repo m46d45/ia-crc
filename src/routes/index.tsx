@@ -1,16 +1,30 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { ArrowRight } from "lucide-react";
+import { useEffect, useMemo, useState } from "react";
 import { ACTIVITIES, LINKS, PHOTOS, PROJECTS, RWGS, STATS, newsByDate } from "@/data/site";
+import { mergeNews, readLocalPublications, type Publication } from "@/data/publications";
 import { useI18n } from "@/i18n/provider";
 import { Button } from "@/components/ui/button";
+import { listPublications } from "@/lib/publications.server";
 
-export const Route = createFileRoute("/")({ component: Home });
+export const Route = createFileRoute("/")({
+  loader: () => listPublications(),
+  component: Home,
+});
 
 function Home() {
   const { t, lang } = useI18n();
+  const loaded = Route.useLoaderData();
   const featuredProjects = PROJECTS.filter((p) => p.status !== "proposal").slice(0, 4);
   const featuredActivities = [...ACTIVITIES].sort((a, b) => b.dateSort.localeCompare(a.dateSort)).slice(0, 4);
-  const latestNews = newsByDate().slice(0, 3);
+  const [local, setLocal] = useState<Publication[]>([]);
+  useEffect(() => {
+    setLocal(readLocalPublications());
+  }, []);
+  const latestNews = useMemo(
+    () => mergeNews(newsByDate(), [...loaded.publications, ...local]).slice(0, 3),
+    [loaded.publications, local],
+  );
 
   return (
     <main>

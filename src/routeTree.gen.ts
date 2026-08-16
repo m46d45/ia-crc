@@ -16,8 +16,10 @@ import { Route as ContactRouteImport } from './routes/contact'
 import { Route as JoinRouteImport } from './routes/join'
 import { Route as LoginRouteImport } from './routes/login'
 import { Route as MembersRouteImport } from './routes/members'
+import { Route as PublicationsRouteImport } from './routes/publications'
 import { Route as ResearchRouteImport } from './routes/research'
 import { Route as ResourcesRouteImport } from './routes/resources'
+import { Route as ApiPublicationsRouteImport } from './routes/api/publications'
 import { Route as NewsIndexRouteImport } from './routes/news/index'
 import { Route as NewsSlugRouteImport } from './routes/news/$slug'
 import { Route as ApiAuthSplatRouteImport } from './routes/api/auth/$'
@@ -57,6 +59,11 @@ const MembersRoute = MembersRouteImport.update({
   path: '/members',
   getParentRoute: () => rootRouteImport,
 } as any)
+const PublicationsRoute = PublicationsRouteImport.update({
+  id: '/publications',
+  path: '/publications',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const ResearchRoute = ResearchRouteImport.update({
   id: '/research',
   path: '/research',
@@ -65,6 +72,11 @@ const ResearchRoute = ResearchRouteImport.update({
 const ResourcesRoute = ResourcesRouteImport.update({
   id: '/resources',
   path: '/resources',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ApiPublicationsRoute = ApiPublicationsRouteImport.update({
+  id: '/api/publications',
+  path: '/api/publications',
   getParentRoute: () => rootRouteImport,
 } as any)
 const NewsIndexRoute = NewsIndexRouteImport.update({
@@ -91,8 +103,10 @@ export interface FileRoutesByFullPath {
   '/join': typeof JoinRoute
   '/login': typeof LoginRoute
   '/members': typeof MembersRoute
+  '/publications': typeof PublicationsRoute
   '/research': typeof ResearchRoute
   '/resources': typeof ResourcesRoute
+  '/api/publications': typeof ApiPublicationsRoute
   '/news/$slug': typeof NewsSlugRoute
   '/news/': typeof NewsIndexRoute
   '/api/auth/$': typeof ApiAuthSplatRoute
@@ -105,8 +119,10 @@ export interface FileRoutesByTo {
   '/join': typeof JoinRoute
   '/login': typeof LoginRoute
   '/members': typeof MembersRoute
+  '/publications': typeof PublicationsRoute
   '/research': typeof ResearchRoute
   '/resources': typeof ResourcesRoute
+  '/api/publications': typeof ApiPublicationsRoute
   '/news/$slug': typeof NewsSlugRoute
   '/news': typeof NewsIndexRoute
   '/api/auth/$': typeof ApiAuthSplatRoute
@@ -120,8 +136,10 @@ export interface FileRoutesById {
   '/join': typeof JoinRoute
   '/login': typeof LoginRoute
   '/members': typeof MembersRoute
+  '/publications': typeof PublicationsRoute
   '/research': typeof ResearchRoute
   '/resources': typeof ResourcesRoute
+  '/api/publications': typeof ApiPublicationsRoute
   '/news/$slug': typeof NewsSlugRoute
   '/news/': typeof NewsIndexRoute
   '/api/auth/$': typeof ApiAuthSplatRoute
@@ -136,8 +154,10 @@ export interface FileRouteTypes {
     | '/join'
     | '/login'
     | '/members'
+    | '/publications'
     | '/research'
     | '/resources'
+    | '/api/publications'
     | '/news/$slug'
     | '/news/'
     | '/api/auth/$'
@@ -150,8 +170,10 @@ export interface FileRouteTypes {
     | '/join'
     | '/login'
     | '/members'
+    | '/publications'
     | '/research'
     | '/resources'
+    | '/api/publications'
     | '/news/$slug'
     | '/news'
     | '/api/auth/$'
@@ -164,8 +186,10 @@ export interface FileRouteTypes {
     | '/join'
     | '/login'
     | '/members'
+    | '/publications'
     | '/research'
     | '/resources'
+    | '/api/publications'
     | '/news/$slug'
     | '/news/'
     | '/api/auth/$'
@@ -179,8 +203,10 @@ export interface RootRouteChildren {
   JoinRoute: typeof JoinRoute
   LoginRoute: typeof LoginRoute
   MembersRoute: typeof MembersRoute
+  PublicationsRoute: typeof PublicationsRoute
   ResearchRoute: typeof ResearchRoute
   ResourcesRoute: typeof ResourcesRoute
+  ApiPublicationsRoute: typeof ApiPublicationsRoute
   NewsSlugRoute: typeof NewsSlugRoute
   NewsIndexRoute: typeof NewsIndexRoute
   ApiAuthSplatRoute: typeof ApiAuthSplatRoute
@@ -237,6 +263,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof MembersRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/publications': {
+      id: '/publications'
+      path: '/publications'
+      fullPath: '/publications'
+      preLoaderRoute: typeof PublicationsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/research': {
       id: '/research'
       path: '/research'
@@ -249,6 +282,13 @@ declare module '@tanstack/react-router' {
       path: '/resources'
       fullPath: '/resources'
       preLoaderRoute: typeof ResourcesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/api/publications': {
+      id: '/api/publications'
+      path: '/api/publications'
+      fullPath: '/api/publications'
+      preLoaderRoute: typeof ApiPublicationsRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/news/': {
@@ -283,8 +323,10 @@ const rootRouteChildren: RootRouteChildren = {
   JoinRoute: JoinRoute,
   LoginRoute: LoginRoute,
   MembersRoute: MembersRoute,
+  PublicationsRoute: PublicationsRoute,
   ResearchRoute: ResearchRoute,
   ResourcesRoute: ResourcesRoute,
+  ApiPublicationsRoute: ApiPublicationsRoute,
   NewsSlugRoute: NewsSlugRoute,
   NewsIndexRoute: NewsIndexRoute,
   ApiAuthSplatRoute: ApiAuthSplatRoute,

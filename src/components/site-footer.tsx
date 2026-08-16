@@ -27,6 +27,7 @@ export function SiteFooter() {
               ["/about", t.nav.about],
               ["/news", t.nav.news],
               ["/research", t.nav.research],
+              ["/publications", t.nav.publications],
               ["/activities", t.nav.activities],
               ["/resources", t.nav.resources],
               ["/members", t.nav.members],

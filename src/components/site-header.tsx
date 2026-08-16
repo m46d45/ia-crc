@@ -11,6 +11,7 @@ const NAV = [
   { to: "/about", key: "about" as const },
   { to: "/news", key: "news" as const },
   { to: "/research", key: "research" as const },
+  { to: "/publications", key: "publications" as const },
   { to: "/activities", key: "activities" as const },
   { to: "/resources", key: "resources" as const },
   { to: "/members", key: "members" as const },

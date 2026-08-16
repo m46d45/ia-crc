@@ -1,14 +1,28 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { ArrowRight } from "lucide-react";
+import { useEffect, useMemo, useState } from "react";
 import { PageIntro } from "@/components/site-shell";
+import { mergeNews, readLocalPublications, type Publication } from "@/data/publications";
 import { newsByDate } from "@/data/site";
 import { useI18n } from "@/i18n/provider";
+import { listPublications } from "@/lib/publications.server";
 
-export const Route = createFileRoute("/news/")({ component: NewsIndex });
+export const Route = createFileRoute("/news/")({
+  loader: () => listPublications(),
+  component: NewsIndex,
+});
 
 function NewsIndex() {
   const { t } = useI18n();
-  const items = newsByDate();
+  const loaded = Route.useLoaderData();
+  const [local, setLocal] = useState<Publication[]>([]);
+  useEffect(() => {
+    setLocal(readLocalPublications());
+  }, []);
+  const items = useMemo(
+    () => mergeNews(newsByDate(), [...loaded.publications, ...local]),
+    [loaded.publications, local],
+  );
 
   return (
     <main>

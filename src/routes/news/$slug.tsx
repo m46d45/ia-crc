@@ -1,21 +1,48 @@
 import { createFileRoute, Link, notFound } from "@tanstack/react-router";
 import { ArrowLeft, ArrowUpRight } from "lucide-react";
+import { useEffect, useState } from "react";
 import { Button } from "@/components/ui/button";
+import { publicationToNews, readLocalPublications, type NewsItem } from "@/data/publications";
 import { newsBySlug } from "@/data/site";
 import { useI18n } from "@/i18n/provider";
+import { listPublications } from "@/lib/publications.server";
 
 export const Route = createFileRoute("/news/$slug")({
-  loader: ({ params }) => {
-    const item = newsBySlug(params.slug);
-    if (!item) throw notFound();
-    return item;
+  loader: async ({ params }) => {
+    const editorial = newsBySlug(params.slug);
+    if (editorial) return { item: editorial };
+    if (params.slug.startsWith("pub-")) {
+      const { publications } = await listPublications();
+      const pub = publications.find((p) => `pub-${p.id}` === params.slug);
+      if (pub) return { item: publicationToNews(pub) };
+      return { item: null, slug: params.slug };
+    }
+    throw notFound();
   },
   component: NewsArticle,
 });
 
 function NewsArticle() {
-  const item = Route.useLoaderData();
+  const loaded = Route.useLoaderData();
   const { t } = useI18n();
+  const [item, setItem] = useState<NewsItem | null>(loaded.item);
+
+  useEffect(() => {
+    if (item || !("slug" in loaded) || !loaded.slug) return;
+    const pub = readLocalPublications().find((p) => `pub-${p.id}` === loaded.slug);
+    if (pub) setItem(publicationToNews(pub));
+  }, [item, loaded]);
+
+  if (!item) {
+    return (
+      <main className="mx-auto max-w-3xl px-4 py-16 sm:px-6">
+        <p className="text-muted">{t.newsPage.notFound}</p>
+        <Link to="/news" className="mt-4 inline-block text-navy">
+          {t.newsPage.back}
+        </Link>
+      </main>
+    );
+  }
 
   return (
     <main>
