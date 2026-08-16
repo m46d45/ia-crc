@@ -10,12 +10,9 @@ export function SiteFooter() {
     <footer className="border-t border-navy/10 bg-navy text-paper">
       <div className="mx-auto grid max-w-6xl gap-10 px-4 py-14 sm:px-6 md:grid-cols-12">
         <div className="md:col-span-5">
-          <div className="flex items-center gap-3">
-            <img src="/images/logo.png" alt="" className="h-11 w-11 rounded-sm bg-surface object-contain p-0.5" />
-            <div>
-              <p className="font-display text-xl leading-none">{t.brand}</p>
-              <p className="mt-1 text-sm text-paper/65">{t.tagline}</p>
-            </div>
+          <div>
+            <img src="/images/logo-wordmark.png" alt="IA-CRC" className="h-8 w-auto" />
+            <p className="mt-2 text-sm text-paper/65">{t.tagline}</p>
           </div>
           <p className="mt-5 max-w-sm text-sm leading-relaxed text-paper/70">{t.fullName}</p>
         </div>

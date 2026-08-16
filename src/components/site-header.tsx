@@ -27,16 +27,12 @@ export function SiteHeader() {
   return (
     <header className="sticky top-0 z-40 border-b border-line/70 bg-paper/90 backdrop-blur-md">
       <div className="mx-auto flex h-16 max-w-6xl items-center justify-between gap-4 px-4 sm:h-[4.25rem] sm:px-6">
-        <Link to="/" className="flex min-w-0 items-center gap-2.5" onClick={() => setOpen(false)}>
-          <img src="/images/logo.png" alt="" className="h-9 w-9 rounded-sm object-contain sm:h-10 sm:w-10" />
-          <span className="min-w-0">
-            <span className="block font-display text-[1.05rem] font-medium leading-none tracking-tight text-navy">
-              {t.brand}
-            </span>
-            <span className="mt-0.5 hidden truncate text-[0.68rem] uppercase tracking-[0.14em] text-muted sm:block">
-              Research forum
-            </span>
-          </span>
+        <Link to="/" className="flex min-w-0 items-center" onClick={() => setOpen(false)}>
+          <img
+            src="/images/logo-wordmark.png"
+            alt="IA-CRC"
+            className="h-7 w-auto sm:h-8"
+          />
         </Link>
 
         <nav className="hidden items-center gap-0.5 lg:flex" aria-label="Primary">
