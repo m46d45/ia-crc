@@ -25,11 +25,11 @@ export function SiteFooter() {
           <ul className="mt-3 space-y-2 text-sm">
             {[
               ["/about", t.nav.about],
+              ["/news", t.nav.news],
               ["/research", t.nav.research],
               ["/activities", t.nav.activities],
-              ["/news", t.nav.news],
-              ["/members", t.nav.members],
               ["/resources", t.nav.resources],
+              ["/members", t.nav.members],
               ["/join", t.nav.join],
             ].map(([to, label]) => (
               <li key={to}>
