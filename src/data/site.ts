@@ -18,6 +18,7 @@ export const LINKS = {
   linktree: "https://linktr.ee/IACRC",
   email: "abduh@itb.ac.id",
   maps: "https://www.google.com/maps/search/?api=1&query=CIBE+Building+ITB+Jl.+Ganesha+No.+10+Bandung",
+  goBuild: "https://sciforum.net/event/GOBUILD2026",
 } as const;
 
 export type Lang = "en" | "id";
@@ -190,7 +191,19 @@ export const ACTIVITIES: {
   dateSort: string;
   place: { en: string; id: string };
   rwg?: string;
+  href?: string;
 }[] = [
+  {
+    kind: "conference",
+    title: {
+      en: "GO BUILD 2026 — 1st International Online Conference on Sustainable Construction",
+      id: "GO BUILD 2026 — 1st International Online Conference on Sustainable Construction",
+    },
+    date: "18–20 November 2026",
+    dateSort: "2026-11-18",
+    place: { en: "Online (CET)", id: "Daring (CET)" },
+    href: "https://sciforum.net/event/GOBUILD2026",
+  },
   {
     kind: "seminar",
     title: { en: "IA-CRC Seminar 2025", id: "Seminar IA-CRC 2025" },
@@ -332,6 +345,43 @@ export const ACTIVITIES: {
     place: { en: "Online & on site, ITB Jakarta Campus", id: "Daring & luring, Kampus ITB Jakarta" },
   },
 ];
+
+export const NEWS: {
+  slug: string;
+  date: string;
+  dateSort: string;
+  title: string;
+  excerpt: string;
+  body: string[];
+  href?: string;
+  hrefLabel?: string;
+}[] = [
+  {
+    slug: "ia-crc-supports-go-build-2026",
+    date: "17 August 2026",
+    dateSort: "2026-08-17",
+    title: "IA-CRC supports GO BUILD 2026 and encourages members to take part",
+    excerpt:
+      "The forum endorses the 1st International Online Conference on Sustainable Construction and invites members to present, attend, and connect.",
+    body: [
+      "IA-CRC is pleased to support GO BUILD 2026 — the 1st International Online Conference on Sustainable Construction: Globalize, Organize, Build, Unite, Innovate, Lead, Develop. The three-day virtual meeting will be held on 18–20 November 2026.",
+      "The conference is hosted by the MDPI journals Sustainability and Designs. It is chaired by Dr Igor Martek of Deakin University, coordinator of IA-CRC’s International Construction working group, together with Dr Mehdi Amirkhani of Adelaide University.",
+      "GO BUILD brings together researchers, educators, students, industry professionals, and policymakers on sustainable building in the Global South, workforce development, resilient infrastructure, emerging technologies, regulation, and built-environment education. These themes sit close to the work of several IA-CRC research groups.",
+      "Members are encouraged to take part — as presenters, session chairs, or delegates. Regular registration remains open until 13 November 2026. Early-bird registration closes on 22 August 2026.",
+      "Details, the programme, and registration are on the conference website.",
+    ],
+    href: "https://sciforum.net/event/GOBUILD2026",
+    hrefLabel: "GO BUILD 2026 website",
+  },
+];
+
+export function newsByDate() {
+  return [...NEWS].sort((a, b) => b.dateSort.localeCompare(a.dateSort));
+}
+
+export function newsBySlug(slug: string) {
+  return NEWS.find((item) => item.slug === slug);
+}
 
 export const PHOTOS = [
   {

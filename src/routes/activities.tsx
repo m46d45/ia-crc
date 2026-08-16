@@ -57,7 +57,13 @@ function ActivitiesPage() {
                 </span>
                 {a.rwg ? <span className="text-xs text-muted">{a.rwg}</span> : null}
               </div>
-              <h2 className="mt-2 font-display text-xl font-medium text-navy">{a.title[lang]}</h2>
+              {a.href ? (
+                <a href={a.href} target="_blank" rel="noreferrer" className="mt-2 block">
+                  <h2 className="font-display text-xl font-medium text-navy hover:underline">{a.title[lang]}</h2>
+                </a>
+              ) : (
+                <h2 className="mt-2 font-display text-xl font-medium text-navy">{a.title[lang]}</h2>
+              )}
               <p className="mt-2 text-sm text-muted">
                 {a.date} · {a.place[lang]}
               </p>

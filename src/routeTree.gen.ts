@@ -18,6 +18,8 @@ import { Route as LoginRouteImport } from './routes/login'
 import { Route as MembersRouteImport } from './routes/members'
 import { Route as ResearchRouteImport } from './routes/research'
 import { Route as ResourcesRouteImport } from './routes/resources'
+import { Route as NewsIndexRouteImport } from './routes/news/index'
+import { Route as NewsSlugRouteImport } from './routes/news/$slug'
 import { Route as ApiAuthSplatRouteImport } from './routes/api/auth/$'
 
 const IndexRoute = IndexRouteImport.update({
@@ -65,6 +67,16 @@ const ResourcesRoute = ResourcesRouteImport.update({
   path: '/resources',
   getParentRoute: () => rootRouteImport,
 } as any)
+const NewsIndexRoute = NewsIndexRouteImport.update({
+  id: '/news/',
+  path: '/news/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const NewsSlugRoute = NewsSlugRouteImport.update({
+  id: '/news/$slug',
+  path: '/news/$slug',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const ApiAuthSplatRoute = ApiAuthSplatRouteImport.update({
   id: '/api/auth/$',
   path: '/api/auth/$',
@@ -81,6 +93,8 @@ export interface FileRoutesByFullPath {
   '/members': typeof MembersRoute
   '/research': typeof ResearchRoute
   '/resources': typeof ResourcesRoute
+  '/news/$slug': typeof NewsSlugRoute
+  '/news/': typeof NewsIndexRoute
   '/api/auth/$': typeof ApiAuthSplatRoute
 }
 export interface FileRoutesByTo {
@@ -93,6 +107,8 @@ export interface FileRoutesByTo {
   '/members': typeof MembersRoute
   '/research': typeof ResearchRoute
   '/resources': typeof ResourcesRoute
+  '/news/$slug': typeof NewsSlugRoute
+  '/news': typeof NewsIndexRoute
   '/api/auth/$': typeof ApiAuthSplatRoute
 }
 export interface FileRoutesById {
@@ -106,6 +122,8 @@ export interface FileRoutesById {
   '/members': typeof MembersRoute
   '/research': typeof ResearchRoute
   '/resources': typeof ResourcesRoute
+  '/news/$slug': typeof NewsSlugRoute
+  '/news/': typeof NewsIndexRoute
   '/api/auth/$': typeof ApiAuthSplatRoute
 }
 export interface FileRouteTypes {
@@ -120,6 +138,8 @@ export interface FileRouteTypes {
     | '/members'
     | '/research'
     | '/resources'
+    | '/news/$slug'
+    | '/news/'
     | '/api/auth/$'
   fileRoutesByTo: FileRoutesByTo
   to:
@@ -132,6 +152,8 @@ export interface FileRouteTypes {
     | '/members'
     | '/research'
     | '/resources'
+    | '/news/$slug'
+    | '/news'
     | '/api/auth/$'
   id:
     | '__root__'
@@ -144,6 +166,8 @@ export interface FileRouteTypes {
     | '/members'
     | '/research'
     | '/resources'
+    | '/news/$slug'
+    | '/news/'
     | '/api/auth/$'
   fileRoutesById: FileRoutesById
 }
@@ -157,6 +181,8 @@ export interface RootRouteChildren {
   MembersRoute: typeof MembersRoute
   ResearchRoute: typeof ResearchRoute
   ResourcesRoute: typeof ResourcesRoute
+  NewsSlugRoute: typeof NewsSlugRoute
+  NewsIndexRoute: typeof NewsIndexRoute
   ApiAuthSplatRoute: typeof ApiAuthSplatRoute
 }
 
@@ -225,6 +251,20 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ResourcesRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/news/': {
+      id: '/news/'
+      path: '/news'
+      fullPath: '/news/'
+      preLoaderRoute: typeof NewsIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/news/$slug': {
+      id: '/news/$slug'
+      path: '/news/$slug'
+      fullPath: '/news/$slug'
+      preLoaderRoute: typeof NewsSlugRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/api/auth/$': {
       id: '/api/auth/$'
       path: '/api/auth/$'
@@ -245,6 +285,8 @@ const rootRouteChildren: RootRouteChildren = {
   MembersRoute: MembersRoute,
   ResearchRoute: ResearchRoute,
   ResourcesRoute: ResourcesRoute,
+  NewsSlugRoute: NewsSlugRoute,
+  NewsIndexRoute: NewsIndexRoute,
   ApiAuthSplatRoute: ApiAuthSplatRoute,
 }
 export const routeTree = rootRouteImport

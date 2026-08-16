@@ -1,6 +1,6 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { ArrowRight } from "lucide-react";
-import { ACTIVITIES, LINKS, PHOTOS, PROJECTS, RWGS, STATS } from "@/data/site";
+import { ACTIVITIES, LINKS, PHOTOS, PROJECTS, RWGS, STATS, newsByDate } from "@/data/site";
 import { useI18n } from "@/i18n/provider";
 import { Button } from "@/components/ui/button";
 
@@ -10,6 +10,7 @@ function Home() {
   const { t, lang } = useI18n();
   const featuredProjects = PROJECTS.filter((p) => p.status !== "proposal").slice(0, 4);
   const featuredActivities = [...ACTIVITIES].sort((a, b) => b.dateSort.localeCompare(a.dateSort)).slice(0, 4);
+  const latestNews = newsByDate().slice(0, 3);
 
   return (
     <main>
@@ -46,6 +47,37 @@ function Home() {
               <p className="mt-1 text-sm text-muted">{stat.label[lang]}</p>
             </div>
           ))}
+        </div>
+      </section>
+
+      <section className="border-b border-line bg-cream">
+        <div className="mx-auto max-w-6xl px-4 py-16 sm:px-6 sm:py-20">
+          <div className="flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
+            <h2 className="font-display text-3xl font-medium tracking-tight text-navy">{t.newsTitle}</h2>
+            <Link to="/news" className="inline-flex items-center gap-1.5 text-sm font-medium text-navy">
+              {t.viewAllNews}
+              <ArrowRight className="size-4" />
+            </Link>
+          </div>
+          <ul className="mt-8 grid gap-4 md:grid-cols-1">
+            {latestNews.map((item) => (
+              <li key={item.slug}>
+                <Link
+                  to="/news/$slug"
+                  params={{ slug: item.slug }}
+                  className="block rounded-xl border border-line bg-surface p-6 shadow-card transition-colors hover:border-navy/25"
+                >
+                  <p className="text-xs font-medium uppercase tracking-[0.14em] text-blue">{item.date}</p>
+                  <h3 className="mt-2 font-display text-2xl font-medium text-navy">{item.title}</h3>
+                  <p className="mt-3 max-w-3xl text-muted">{item.excerpt}</p>
+                  <span className="mt-4 inline-flex items-center gap-1.5 text-sm font-medium text-navy">
+                    {t.readMore}
+                    <ArrowRight className="size-4" />
+                  </span>
+                </Link>
+              </li>
+            ))}
+          </ul>
         </div>
       </section>
 
