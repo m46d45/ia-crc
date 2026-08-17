@@ -6,7 +6,7 @@ export type VisitStats = {
 };
 
 const VISITOR_KEY = "ia-crc-visitor-id";
-const SESSION_KEY = "ia-crc-visit-recorded";
+const COUNTED_KEY = "ia-crc-visitor-counted";
 
 let inflight: Promise<VisitStats> | null = null;
 
@@ -22,7 +22,7 @@ function visitorId(): string {
 function loadVisits(): Promise<VisitStats> {
   if (inflight) return inflight;
   inflight = (async () => {
-    const already = sessionStorage.getItem(SESSION_KEY);
+    const already = localStorage.getItem(COUNTED_KEY);
     const res = already
       ? await fetch("/api/visits", { cache: "no-store" })
       : await fetch("/api/visits", {
@@ -32,7 +32,7 @@ function loadVisits(): Promise<VisitStats> {
         });
     if (!res.ok) throw new Error("visit request failed");
     const data = (await res.json()) as VisitStats;
-    if (!already) sessionStorage.setItem(SESSION_KEY, "1");
+    if (!already && data.visitors > 0) localStorage.setItem(COUNTED_KEY, "1");
     return data;
   })().finally(() => {
     inflight = null;
