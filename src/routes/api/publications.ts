@@ -1,5 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
-import type { Publication } from "@/data/publications";
+import type { Publication, PublicationKind } from "@/data/publications";
+import { yearToSort } from "@/data/publications";
 import { resolveCitation } from "@/lib/cite.server";
 import { findPublication, listedPublications, rememberPublication } from "@/lib/publication-store";
 
@@ -19,6 +20,7 @@ export const Route = createFileRoute("/api/publications")({
           authors?: string;
           year?: string;
           container?: string;
+          kind?: PublicationKind;
         };
         if (body.action === "lookup") {
           try {
@@ -38,6 +40,7 @@ export const Route = createFileRoute("/api/publications")({
             const authors = String(body.authors ?? cite.authors ?? "").trim();
             const year = String(body.year ?? cite.year ?? "").trim() || null;
             const container = String(body.container ?? cite.container ?? "").trim() || null;
+            const kind = (body.kind ?? cite.kind) as PublicationKind | undefined;
             const doi = cite.doi;
             if (!title) {
               return Response.json({ error: "Add the paper title, then submit." }, { status: 400 });
@@ -58,6 +61,8 @@ export const Route = createFileRoute("/api/publications")({
               title,
               authors: authors || "Unknown authors",
               year,
+              dateSort: cite.dateSort || yearToSort(year),
+              kind,
               container,
               submitterName: name,
               submitterEmail: email,

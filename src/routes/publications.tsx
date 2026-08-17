@@ -5,9 +5,11 @@ import { PageIntro } from "@/components/site-shell";
 import { Button } from "@/components/ui/button";
 import {
   mergePublications,
+  publicationMeta,
   readLocalPublications,
   writeLocalPublication,
   type Publication,
+  type PublicationKind,
 } from "@/data/publications";
 import { useI18n } from "@/i18n/provider";
 import { listPublications } from "@/lib/publication-fns";
@@ -19,6 +21,7 @@ type CitePreview = {
   authors: string;
   year: string | null;
   container: string | null;
+  kind?: PublicationKind;
   incomplete?: boolean;
 };
 
@@ -94,6 +97,7 @@ function PublicationsPage() {
         authors: preview?.authors,
         year: preview?.year || undefined,
         container: preview?.container || undefined,
+        kind: preview?.kind,
       })) as { publication: Publication; duplicate: boolean };
       writeLocalPublication(result.publication);
       setLocal(readLocalPublications());
@@ -196,14 +200,28 @@ function PublicationsPage() {
                       className="h-11 w-full rounded-md border border-line bg-surface px-3 text-ink outline-none ring-navy/20 focus:ring-2"
                     />
                   </Field>
-                  <Field label={p.citeVenue}>
-                    <input
-                      value={preview.container ?? ""}
-                      onChange={(e) => setPreview({ ...preview, container: e.target.value || null })}
+                  <Field label={p.citeKind}>
+                    <select
+                      value={preview.kind ?? "article"}
+                      onChange={(e) =>
+                        setPreview({ ...preview, kind: e.target.value as PublicationKind })
+                      }
                       className="h-11 w-full rounded-md border border-line bg-surface px-3 text-ink outline-none ring-navy/20 focus:ring-2"
-                    />
+                    >
+                      <option value="article">{p.kindArticle}</option>
+                      <option value="book">{p.kindBook}</option>
+                      <option value="chapter">{p.kindChapter}</option>
+                      <option value="conference">{p.kindConference}</option>
+                    </select>
                   </Field>
                 </div>
+                <Field label={p.citeVenue}>
+                  <input
+                    value={preview.container ?? ""}
+                    onChange={(e) => setPreview({ ...preview, container: e.target.value || null })}
+                    className="h-11 w-full rounded-md border border-line bg-surface px-3 text-ink outline-none ring-navy/20 focus:ring-2"
+                  />
+                </Field>
                 {preview.doi ? <p className="text-xs text-subtle">doi:{preview.doi}</p> : null}
               </div>
             ) : null}
@@ -241,10 +259,7 @@ function PublicationsPage() {
           <ul className="mt-8 space-y-4">
             {items.map((item) => (
               <li key={item.id} className="rounded-xl border border-line bg-surface p-5 shadow-card">
-                <p className="text-xs text-subtle">
-                  {item.year ?? "n.d."}
-                  {item.container ? ` · ${item.container}` : ""}
-                </p>
+                <p className="text-xs text-subtle">{publicationMeta(item)}</p>
                 <h3 className="mt-1 font-display text-2xl font-medium text-navy">{item.title}</h3>
                 <p className="mt-2 text-sm text-muted">{item.authors}</p>
                 {item.note ? <p className="mt-3 text-sm text-ink/80">{item.note}</p> : null}

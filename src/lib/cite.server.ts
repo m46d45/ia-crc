@@ -1,4 +1,4 @@
-import { doiUrl, extractDoi } from "@/data/publications";
+import { doiUrl, extractDoi, yearToSort, type PublicationKind } from "@/data/publications";
 
 export type CiteResult = {
   doi: string | null;
@@ -7,6 +7,8 @@ export type CiteResult = {
   authors: string;
   year: string | null;
   container: string | null;
+  kind?: PublicationKind;
+  dateSort?: string;
   incomplete?: boolean;
 };
 
@@ -27,6 +29,22 @@ function formatAuthors(
 function yearFromParts(parts?: number[][]) {
   const y = parts?.[0]?.[0];
   return y ? String(y) : null;
+}
+
+function mapKind(type?: string): PublicationKind | undefined {
+  if (!type) return undefined;
+  if (type === "book" || type === "monograph" || type === "edited-book" || type === "reference-book") {
+    return "book";
+  }
+  if (type === "book-chapter") return "chapter";
+  if (type === "proceedings-article" || type === "proceedings") return "conference";
+  return "article";
+}
+
+function issuedSort(parts?: number[][]) {
+  const [y, m, d] = parts?.[0] ?? [];
+  if (!y) return undefined;
+  return `${y}-${String(m ?? 1).padStart(2, "0")}-${String(d ?? 1).padStart(2, "0")}`;
 }
 
 function looksLikeUrl(value: string) {
@@ -59,19 +77,25 @@ async function fromCrossref(doi: string): Promise<CiteResult | null> {
       issued?: { "date-parts": number[][] };
       DOI?: string;
       URL?: string;
+      type?: string;
+      publisher?: string;
     };
   } | null;
   const work = json?.message;
   const title = work?.title?.[0]?.trim();
   if (!work || !title) return null;
   const resolved = (work.DOI ?? doi).toLowerCase();
+  const kind = mapKind(work.type);
+  const container = work["container-title"]?.[0] || (kind === "book" ? work.publisher ?? null : null);
   return {
     doi: resolved,
     url: work.URL || doiUrl(resolved),
     title,
     authors: formatAuthors(work.author),
     year: yearFromParts(work.issued?.["date-parts"]),
-    container: work["container-title"]?.[0] ?? null,
+    container,
+    kind,
+    dateSort: issuedSort(work.issued?.["date-parts"]),
   };
 }
 
