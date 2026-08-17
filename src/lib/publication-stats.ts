@@ -2,6 +2,7 @@ import { MEMBER_GROUPS } from "@/data/site";
 import type { Publication } from "@/data/publications";
 
 export const FOUNDING_YEAR = 2023;
+export const UNLISTED_VENUE = "Venue not listed";
 
 export type MemberPaperStat = {
   name: string;
@@ -82,18 +83,26 @@ function paperYear(p: Publication): number | null {
   return m ? Number(m[1]) : null;
 }
 
+function venueLabel(raw: string | null | undefined): string {
+  const name = (raw ?? "").trim().replace(/\s+/g, " ");
+  return name || UNLISTED_VENUE;
+}
+
 export function computePublicationStats(papers: Publication[]): PublicationStats {
   const now = new Date().getFullYear();
   const yearCount = new Map<number, number>();
   const venueCount = new Map<string, number>();
   const memberMap = new Map<string, MemberPaperStat>();
+  let counted = 0;
   let news = 0;
 
   for (const paper of papers) {
-    if (paper.note) news += 1;
-    const venue = (paper.container ?? "").trim();
-    if (venue) venueCount.set(venue, (venueCount.get(venue) ?? 0) + 1);
     const y = paperYear(paper);
+    if (y !== null && y < FOUNDING_YEAR) continue;
+    counted += 1;
+    if (paper.note) news += 1;
+    const venue = venueLabel(paper.container);
+    venueCount.set(venue, (venueCount.get(venue) ?? 0) + 1);
     if (y) yearCount.set(y, (yearCount.get(y) ?? 0) + 1);
 
     for (const raw of splitAuthors(paper.authors)) {
@@ -116,16 +125,22 @@ export function computePublicationStats(papers: Publication[]): PublicationStats
     byYear.push({ year: String(y), papers: yearCount.get(y) ?? 0 });
   }
 
+  const namedVenues = [...venueCount.keys()].filter((name) => name !== UNLISTED_VENUE);
+
   return {
-    total: papers.length,
-    venues: venueCount.size,
+    total: counted,
+    venues: namedVenues.length,
     news,
     yearMin,
     yearMax,
     byYear,
     byVenue: [...venueCount.entries()]
       .map(([name, count]) => ({ name, papers: count }))
-      .sort((a, b) => b.papers - a.papers || a.name.localeCompare(b.name)),
+      .sort((a, b) => {
+        if (a.name === UNLISTED_VENUE) return 1;
+        if (b.name === UNLISTED_VENUE) return -1;
+        return b.papers - a.papers || a.name.localeCompare(b.name);
+      }),
     members: [...memberMap.values()].sort(
       (a, b) => b.papers - a.papers || a.name.localeCompare(b.name),
     ),

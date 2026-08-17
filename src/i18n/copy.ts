@@ -130,7 +130,7 @@ export const COPY = {
     statsPage: {
       title: "Statistics",
       intro:
-        "Counts are taken only from the Publications list. Members are the intersection of paper authors and the official IA-CRC roster. The year axis starts in 2023, when the forum was founded.",
+        "Counts are taken only from the Publications list, starting in 2023 when the forum was founded. Earlier works stay on the list but are not counted. Members are the intersection of paper authors and the official IA-CRC roster.",
       papers: "Papers",
       members: "Members on the list",
       venues: "Venues",
@@ -144,6 +144,7 @@ export const COPY = {
       memberTitle: "Members on the list",
       one: "paper",
       many: "papers",
+      venueLead: "Each paper from 2023 onward is counted once.",
       emptyVenues: "No venues on the list yet.",
       emptyMembers: "No listed members appear as authors yet.",
     },
@@ -493,7 +494,7 @@ export const COPY = {
     statsPage: {
       title: "Statistik",
       intro:
-        "Angka diambil hanya dari daftar Publikasi. Anggota adalah irisan penulis makalah dan daftar resmi anggota IA-CRC. Sumbu tahun dimulai 2023, saat forum didirikan.",
+        "Angka diambil hanya dari daftar Publikasi, mulai 2023 saat forum didirikan. Karya sebelumnya tetap di daftar tetapi tidak dihitung. Anggota adalah irisan penulis makalah dan daftar resmi anggota IA-CRC.",
       papers: "Makalah",
       members: "Anggota di daftar",
       venues: "Penerbit",
@@ -507,6 +508,7 @@ export const COPY = {
       memberTitle: "Anggota di daftar",
       one: "makalah",
       many: "makalah",
+      venueLead: "Setiap makalah dari 2023 dihitung sekali.",
       emptyVenues: "Belum ada penerbit di daftar.",
       emptyMembers: "Belum ada anggota yang muncul sebagai penulis.",
     },
