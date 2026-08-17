@@ -75,7 +75,11 @@ function StatisticsPage() {
             {stats.byVenue.length === 0 ? (
               <p className="mt-4 text-sm text-muted">{s.emptyVenues}</p>
             ) : (
-              <ul className="mt-4 space-y-3">
+              <>
+                <p className="mt-2 text-sm text-muted">
+                  {stats.total} {stats.total === 1 ? s.one : s.many} · {s.venueLead}
+                </p>
+                <ul className="mt-4 space-y-3">
                 {stats.byVenue.map((v) => (
                   <li key={v.name}>
                     <div className="flex items-baseline justify-between gap-3 text-sm">
@@ -90,7 +94,8 @@ function StatisticsPage() {
                     </div>
                   </li>
                 ))}
-              </ul>
+                </ul>
+              </>
             )}
           </article>
 
