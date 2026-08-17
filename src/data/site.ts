@@ -528,6 +528,7 @@ export const MEMBER_GROUPS: MemberGroup[] = [
   { org: "Universitas Singaperbangsa Karawang", country: "id", people: ["Amalia Rizka Sugiarto"] },
   { org: "Universitas Muhammadiyah Malang", country: "id", people: ["Moh. Abduh"] },
   { org: "Universitas Katolik Santo Thomas", country: "id", people: ["Rina Firlia Sari"] },
+  { org: "Calvin Institute of Technology", country: "id", people: ["Yongki Alexander Tanne"] },
   {
     org: "PT Pembangunan Perumahan",
     country: "industry",
