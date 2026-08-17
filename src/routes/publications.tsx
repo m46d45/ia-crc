@@ -19,6 +19,7 @@ type CitePreview = {
   authors: string;
   year: string | null;
   container: string | null;
+  incomplete?: boolean;
 };
 
 export const Route = createFileRoute("/publications")({
@@ -89,6 +90,10 @@ function PublicationsPage() {
         submitterEmail: email,
         institution: institution || undefined,
         note: note || undefined,
+        title: preview?.title,
+        authors: preview?.authors,
+        year: preview?.year || undefined,
+        container: preview?.container || undefined,
       })) as { publication: Publication; duplicate: boolean };
       writeLocalPublication(result.publication);
       setLocal(readLocalPublications());
@@ -165,15 +170,41 @@ function PublicationsPage() {
             </Field>
 
             {preview ? (
-              <div className="rounded-xl border border-navy/15 bg-surface p-4">
+              <div className="space-y-3 rounded-xl border border-navy/15 bg-surface p-4">
                 <p className="text-xs font-medium uppercase tracking-[0.14em] text-blue">{p.preview}</p>
-                <p className="mt-2 font-medium text-navy">{preview.title}</p>
-                <p className="mt-1 text-sm text-muted">
-                  {preview.authors}
-                  {preview.year ? ` · ${preview.year}` : ""}
-                  {preview.container ? ` · ${preview.container}` : ""}
-                </p>
-                {preview.doi ? <p className="mt-2 text-xs text-subtle">doi:{preview.doi}</p> : null}
+                {preview.incomplete ? <p className="text-sm text-muted">{p.incomplete}</p> : null}
+                <Field label={p.citeTitle}>
+                  <input
+                    value={preview.title}
+                    onChange={(e) => setPreview({ ...preview, title: e.target.value })}
+                    required
+                    className="h-11 w-full rounded-md border border-line bg-surface px-3 text-ink outline-none ring-navy/20 focus:ring-2"
+                  />
+                </Field>
+                <Field label={p.citeAuthors}>
+                  <input
+                    value={preview.authors}
+                    onChange={(e) => setPreview({ ...preview, authors: e.target.value })}
+                    className="h-11 w-full rounded-md border border-line bg-surface px-3 text-ink outline-none ring-navy/20 focus:ring-2"
+                  />
+                </Field>
+                <div className="grid gap-3 sm:grid-cols-2">
+                  <Field label={p.citeYear}>
+                    <input
+                      value={preview.year ?? ""}
+                      onChange={(e) => setPreview({ ...preview, year: e.target.value || null })}
+                      className="h-11 w-full rounded-md border border-line bg-surface px-3 text-ink outline-none ring-navy/20 focus:ring-2"
+                    />
+                  </Field>
+                  <Field label={p.citeVenue}>
+                    <input
+                      value={preview.container ?? ""}
+                      onChange={(e) => setPreview({ ...preview, container: e.target.value || null })}
+                      className="h-11 w-full rounded-md border border-line bg-surface px-3 text-ink outline-none ring-navy/20 focus:ring-2"
+                    />
+                  </Field>
+                </div>
+                {preview.doi ? <p className="text-xs text-subtle">doi:{preview.doi}</p> : null}
               </div>
             ) : null}
 
@@ -189,7 +220,7 @@ function PublicationsPage() {
               <Button type="button" variant="invert" disabled={status !== "idle"} onClick={() => void onLookup()}>
                 {status === "looking" ? p.looking : p.lookup}
               </Button>
-              <Button type="submit" disabled={status !== "idle" || !preview}>
+              <Button type="submit" disabled={status !== "idle" || !preview || !preview.title.trim()}>
                 {status === "saving" ? p.saving : p.submit}
               </Button>
             </div>

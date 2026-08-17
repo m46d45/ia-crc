@@ -7,16 +7,18 @@ export type CiteResult = {
   authors: string;
   year: string | null;
   container: string | null;
+  incomplete?: boolean;
 };
 
 function formatAuthors(
   authors: Array<{ given?: string; family?: string; name?: string }> | undefined,
 ) {
-  if (!authors?.length) return "Unknown authors";
+  if (!authors?.length) return "";
   const names = authors.map((a) => {
     if (a.name) return a.name;
-    return [a.given, a.family].filter(Boolean).join(" ").trim() || "Unknown";
-  });
+    return [a.given, a.family].filter(Boolean).join(" ").trim() || "";
+  }).filter(Boolean);
+  if (!names.length) return "";
   if (names.length === 1) return names[0];
   if (names.length === 2) return `${names[0]} & ${names[1]}`;
   return `${names.slice(0, -1).join(", ")} & ${names[names.length - 1]}`;
@@ -25,6 +27,15 @@ function formatAuthors(
 function yearFromParts(parts?: number[][]) {
   const y = parts?.[0]?.[0];
   return y ? String(y) : null;
+}
+
+function looksLikeUrl(value: string) {
+  try {
+    const u = new URL(value);
+    return /^https?:$/.test(u.protocol);
+  } catch {
+    return false;
+  }
 }
 
 async function fetchJson(url: string) {
@@ -93,7 +104,24 @@ function metaContent(html: string, name: string) {
     `<meta[^>]+content=["']([^"']+)["'][^>]+(?:name|property)=["']${name}["']`,
     "i",
   );
-  return html.match(re)?.[1] || html.match(alt)?.[1] || null;
+  return decode(html.match(re)?.[1] || html.match(alt)?.[1] || null);
+}
+
+function decode(value: string | null) {
+  if (!value) return null;
+  return value
+    .replace(/&/g, "&")
+    .replace(/"/g, '"')
+    .replace(/&#39;/g, "'")
+    .replace(/</g, "<")
+    .replace(/>/g, ">")
+    .trim();
+}
+
+function pageTitle(html: string) {
+  const raw = html.match(/<title[^>]*>(.*?)<\/title>/i)?.[1];
+  if (!raw) return null;
+  return decode(raw.replace(/\s+/g, " "));
 }
 
 async function fromLandingPage(url: string): Promise<CiteResult | null> {
@@ -105,39 +133,84 @@ async function fromLandingPage(url: string): Promise<CiteResult | null> {
   }
   if (!/^https?:$/.test(parsed.protocol)) return null;
   const res = await fetch(parsed.toString(), {
-    headers: { "User-Agent": "IA-CRC/1.0 (mailto:abduh@itb.ac.id)", Accept: "text/html" },
+    headers: {
+      "User-Agent":
+        "Mozilla/5.0 (compatible; IA-CRC/1.0; +https://www.ia-crc.net) AppleWebKit/537.36",
+      Accept: "text/html,application/xhtml+xml",
+    },
     redirect: "follow",
     signal: AbortSignal.timeout(8000),
   });
   if (!res.ok) return null;
   const html = (await res.text()).slice(0, 200_000);
-  const doi = extractDoi(metaContent(html, "citation_doi") || html);
-  if (doi) {
-    return (await fromCrossref(doi)) ?? (await fromOpenAlex(doi));
-  }
-  const title = metaContent(html, "citation_title") || metaContent(html, "og:title");
+  const pageDoi = extractDoi(metaContent(html, "citation_doi") || "");
+  const catalog = pageDoi
+    ? ((await fromCrossref(pageDoi)) ?? (await fromOpenAlex(pageDoi)))
+    : null;
+  if (catalog) return { ...catalog, url: parsed.toString() };
+
+  const title =
+    metaContent(html, "citation_title") ||
+    metaContent(html, "dc.title") ||
+    metaContent(html, "og:title") ||
+    metaContent(html, "twitter:title") ||
+    pageTitle(html);
   if (!title) return null;
-  const author = metaContent(html, "citation_author");
-  const journal = metaContent(html, "citation_journal_title");
-  const date = metaContent(html, "citation_publication_date");
+  const author =
+    metaContent(html, "citation_author") ||
+    metaContent(html, "dc.creator") ||
+    metaContent(html, "author");
+  const journal =
+    metaContent(html, "citation_journal_title") ||
+    metaContent(html, "dc.source") ||
+    metaContent(html, "og:site_name");
+  const date =
+    metaContent(html, "citation_publication_date") ||
+    metaContent(html, "citation_year") ||
+    metaContent(html, "dc.date");
   return {
-    doi: null,
+    doi: pageDoi,
     url: parsed.toString(),
     title,
-    authors: author || "Unknown authors",
+    authors: author || "",
     year: date?.slice(0, 4) ?? null,
     container: journal,
   };
 }
 
+function urlFallback(source: string, doi: string | null): CiteResult {
+  const url = looksLikeUrl(source) ? source.trim() : doi ? doiUrl(doi) : source.trim();
+  let host: string | null = null;
+  try {
+    host = new URL(url).hostname.replace(/^www\./, "");
+  } catch {
+    host = null;
+  }
+  return {
+    doi,
+    url,
+    title: "",
+    authors: "",
+    year: null,
+    container: host,
+    incomplete: true,
+  };
+}
+
 export async function resolveCitation(source: string): Promise<CiteResult> {
-  const doi = extractDoi(source);
+  const trimmed = source.trim();
+  const doi = extractDoi(trimmed);
   if (doi) {
     const cited = (await fromCrossref(doi)) ?? (await fromOpenAlex(doi));
     if (cited) return cited;
-    throw new Error("That DOI could not be found. Check the number and try again.");
   }
-  const fromPage = await fromLandingPage(source);
-  if (fromPage) return fromPage;
+  if (looksLikeUrl(trimmed)) {
+    const fromPage = await fromLandingPage(trimmed);
+    if (fromPage) {
+      return { ...fromPage, doi: doi ?? fromPage.doi };
+    }
+    return urlFallback(trimmed, doi);
+  }
+  if (doi) return urlFallback(doiUrl(doi), doi);
   throw new Error("Paste a DOI (10.xxxx/…) or the full URL of the paper.");
 }

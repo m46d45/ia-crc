@@ -15,6 +15,10 @@ export const Route = createFileRoute("/api/publications")({
           submitterEmail?: string;
           institution?: string;
           note?: string;
+          title?: string;
+          authors?: string;
+          year?: string;
+          container?: string;
         };
         if (body.action === "lookup") {
           try {
@@ -30,7 +34,15 @@ export const Route = createFileRoute("/api/publications")({
         if (body.action === "submit") {
           try {
             const cite = await resolveCitation(String(body.source ?? ""));
-            const existing = findPublication(cite.doi);
+            const title = String(body.title ?? cite.title ?? "").trim();
+            const authors = String(body.authors ?? cite.authors ?? "").trim();
+            const year = String(body.year ?? cite.year ?? "").trim() || null;
+            const container = String(body.container ?? cite.container ?? "").trim() || null;
+            const doi = cite.doi;
+            if (!title) {
+              return Response.json({ error: "Add the paper title, then submit." }, { status: 400 });
+            }
+            const existing = findPublication(doi);
             if (existing) return Response.json({ publication: existing, duplicate: true });
 
             const name = String(body.submitterName ?? "").trim();
@@ -41,12 +53,12 @@ export const Route = createFileRoute("/api/publications")({
 
             const publication: Publication = {
               id: crypto.randomUUID(),
-              doi: cite.doi,
+              doi,
               url: cite.url,
-              title: cite.title,
-              authors: cite.authors,
-              year: cite.year,
-              container: cite.container,
+              title,
+              authors: authors || "Unknown authors",
+              year,
+              container,
               submitterName: name,
               submitterEmail: email,
               institution: body.institution?.trim() || null,
