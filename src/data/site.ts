@@ -19,6 +19,7 @@ export const LINKS = {
   email: "abduh@itb.ac.id",
   maps: "https://www.google.com/maps/search/?api=1&query=CIBE+Building+ITB+Jl.+Ganesha+No.+10+Bandung",
   goBuild: "https://sciforum.net/event/GOBUILD2026",
+  concern: "https://concern.itb.ac.id/",
 } as const;
 
 export type Lang = "en" | "id";
@@ -196,6 +197,17 @@ export const ACTIVITIES: {
   {
     kind: "conference",
     title: {
+      en: "ConCERN 2026 — 3rd International Conference for Civil Engineering Research Network",
+      id: "ConCERN 2026 — 3rd International Conference for Civil Engineering Research Network",
+    },
+    date: "25–26 November 2026",
+    dateSort: "2026-11-25",
+    place: { en: "Aula Barat, ITB Ganesha Campus, Bandung", id: "Aula Barat, Kampus ITB Ganesha, Bandung" },
+    href: "https://concern.itb.ac.id/",
+  },
+  {
+    kind: "conference",
+    title: {
       en: "GO BUILD 2026 — 1st International Online Conference on Sustainable Construction",
       id: "GO BUILD 2026 — 1st International Online Conference on Sustainable Construction",
     },
@@ -357,6 +369,24 @@ export const NEWS: {
   href?: string;
   hrefLabel?: string;
 }[] = [
+  {
+    slug: "ia-crc-supports-concern-2026",
+    date: "17 August 2026",
+    dateSort: "2026-08-17",
+    category: "conference",
+    title: "IA-CRC supports ConCERN 2026 — Australian members will take part in Bandung",
+    excerpt:
+      "The forum endorses the 3rd International Conference for Civil Engineering Research Network at ITB. Members from Australia will join colleagues in Indonesia.",
+    body: [
+      "IA-CRC is pleased to support ConCERN 2026 — the 3rd International Conference for Civil Engineering Research Network. The two-day meeting will be held on 25–26 November 2026 at Aula Barat, Institut Teknologi Bandung (Ganesha Campus), Bandung, Indonesia.",
+      "ConCERN is organised by the Civil Engineering Programme of Institut Teknologi Bandung. This year’s theme is “Beyond Civil Engineering: Multidisciplinary Research Networks for Resilient & Sustainable Infrastructure.” Tracks include construction and infrastructure management, structural and geotechnical engineering, water resources, transportation, integrated civil systems, multidisciplinary engineering for infrastructure, and the socio-technical, policy, and governance of infrastructure.",
+      "Members from Australia will take part alongside Indonesian colleagues — presenting, chairing, and helping to host a meeting that sits close to the work of several IA-CRC research groups, especially International Construction, Resilience & Sustainability, and Construction Technology & Innovation.",
+      "Accepted papers may appear in IOP Conference Series: Earth and Environmental Science (Scopus) and the ITB Civil Engineering Journal (SINTA). Full papers are due by 13 September 2026. Registration and payment close on 25 October 2026. Members in both countries are encouraged to submit, attend, and connect in Bandung.",
+      "Details, the call for papers, and registration are on the conference website.",
+    ],
+    href: "https://concern.itb.ac.id/",
+    hrefLabel: "ConCERN 2026 website",
+  },
   {
     slug: "ia-crc-supports-go-build-2026",
     date: "17 August 2026",
