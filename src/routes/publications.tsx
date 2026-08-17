@@ -118,6 +118,46 @@ function PublicationsPage() {
         <p>{p.intro}</p>
       </PageIntro>
 
+      <section className="mx-auto max-w-6xl px-4 py-14 sm:px-6">
+        <div className="flex items-end justify-between gap-4">
+          <h2 className="font-display text-3xl font-medium text-navy">{p.listTitle}</h2>
+          <p className="text-sm text-muted">
+            {items.length} {items.length === 1 ? p.one : p.many}
+          </p>
+        </div>
+        {items.length === 0 ? (
+          <p className="mt-8 rounded-xl border border-dashed border-line bg-surface px-5 py-10 text-muted">{p.empty}</p>
+        ) : (
+          <ul className="mt-8 space-y-4">
+            {items.map((item) => (
+              <li key={item.id} className="rounded-xl border border-line bg-surface p-5 shadow-card">
+                <p className="text-xs text-subtle">{publicationMeta(item)}</p>
+                <h3 className="mt-1 font-display text-2xl font-medium text-navy">{item.title}</h3>
+                <p className="mt-2 text-sm text-muted">{item.authors}</p>
+                {item.note ? <p className="mt-3 text-sm text-ink/80">{item.note}</p> : null}
+                <div className="mt-4 flex flex-wrap items-center gap-x-4 gap-y-2 text-sm">
+                  <a
+                    href={item.url}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="inline-flex items-center gap-1 font-medium text-navy"
+                  >
+                    {item.doi ? `doi:${item.doi}` : p.open}
+                    <ArrowUpRight className="size-4" />
+                  </a>
+                  <Link to="/news/$slug" params={{ slug: `pub-${item.id}` }} className="text-muted hover:text-navy">
+                    {p.viewNews}
+                  </Link>
+                  <span className="text-subtle">
+                    {p.addedBy} {item.submitterName}
+                  </span>
+                </div>
+              </li>
+            ))}
+          </ul>
+        )}
+      </section>
+
       <section className="border-b border-line bg-cream">
         <div className="mx-auto grid max-w-6xl gap-10 px-4 py-14 sm:px-6 lg:grid-cols-12">
           <div className="lg:col-span-5">
@@ -246,45 +286,6 @@ function PublicationsPage() {
         </div>
       </section>
 
-      <section className="mx-auto max-w-6xl px-4 py-14 sm:px-6">
-        <div className="flex items-end justify-between gap-4">
-          <h2 className="font-display text-3xl font-medium text-navy">{p.listTitle}</h2>
-          <p className="text-sm text-muted">
-            {items.length} {items.length === 1 ? p.one : p.many}
-          </p>
-        </div>
-        {items.length === 0 ? (
-          <p className="mt-8 rounded-xl border border-dashed border-line bg-surface px-5 py-10 text-muted">{p.empty}</p>
-        ) : (
-          <ul className="mt-8 space-y-4">
-            {items.map((item) => (
-              <li key={item.id} className="rounded-xl border border-line bg-surface p-5 shadow-card">
-                <p className="text-xs text-subtle">{publicationMeta(item)}</p>
-                <h3 className="mt-1 font-display text-2xl font-medium text-navy">{item.title}</h3>
-                <p className="mt-2 text-sm text-muted">{item.authors}</p>
-                {item.note ? <p className="mt-3 text-sm text-ink/80">{item.note}</p> : null}
-                <div className="mt-4 flex flex-wrap items-center gap-x-4 gap-y-2 text-sm">
-                  <a
-                    href={item.url}
-                    target="_blank"
-                    rel="noreferrer"
-                    className="inline-flex items-center gap-1 font-medium text-navy"
-                  >
-                    {item.doi ? `doi:${item.doi}` : p.open}
-                    <ArrowUpRight className="size-4" />
-                  </a>
-                  <Link to="/news/$slug" params={{ slug: `pub-${item.id}` }} className="text-muted hover:text-navy">
-                    {p.viewNews}
-                  </Link>
-                  <span className="text-subtle">
-                    {p.addedBy} {item.submitterName}
-                  </span>
-                </div>
-              </li>
-            ))}
-          </ul>
-        )}
-      </section>
     </main>
   );
 }

@@ -1,10 +1,12 @@
 import { Link } from "@tanstack/react-router";
 import { LINKS } from "@/data/site";
 import { useI18n } from "@/i18n/provider";
+import { useVisits } from "@/lib/use-visits";
 
 export function SiteFooter() {
   const { t } = useI18n();
   const year = new Date().getFullYear();
+  const { visitors } = useVisits();
 
   return (
     <footer className="border-t border-navy/10 bg-navy text-paper">
@@ -25,6 +27,7 @@ export function SiteFooter() {
               ["/news", t.nav.news],
               ["/research", t.nav.research],
               ["/publications", t.nav.publications],
+              ["/statistics", t.nav.statistics],
               ["/activities", t.nav.activities],
               ["/resources", t.nav.resources],
               ["/members", t.nav.members],
@@ -54,7 +57,14 @@ export function SiteFooter() {
           <p>
             © {year} {t.footer.rights}
           </p>
-          <p>Institut Teknologi Bandung · La Trobe · Melbourne · Deakin</p>
+          <div className="flex flex-col gap-1 sm:items-end">
+            {visitors > 0 ? (
+              <p>
+                {visitors.toLocaleString()} {t.footer.visitors}
+              </p>
+            ) : null}
+            <p>Institut Teknologi Bandung · La Trobe · Melbourne · Deakin</p>
+          </div>
         </div>
       </div>
     </footer>
