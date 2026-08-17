@@ -15,6 +15,11 @@ import {
   readLocalPublications,
   type Publication,
 } from "@/data/publications";
+import {
+  memberCount,
+  supporterCount,
+  universityCount,
+} from "@/data/site";
 import { useI18n } from "@/i18n/provider";
 import { listPublications } from "@/lib/publication-fns";
 import { computePublicationStats } from "@/lib/publication-stats";
@@ -45,6 +50,26 @@ function StatisticsPage() {
       <PageIntro title={s.title}>
         <p>{s.intro}</p>
       </PageIntro>
+
+      <section className="border-b border-line bg-cream">
+        <div className="mx-auto max-w-6xl px-4 py-10 sm:px-6">
+          <h2 className="font-display text-2xl font-medium text-navy">{s.communityTitle}</h2>
+          <p className="mt-2 text-sm text-muted">{s.communityIntro}</p>
+          <div className="mt-6 grid grid-cols-1 gap-3 sm:grid-cols-3">
+            <Kpi label={s.communityMembers} value={memberCount()} hint={s.communityMembersHint} />
+            <Kpi
+              label={s.communityUniversities}
+              value={universityCount()}
+              hint={s.communityUniversitiesHint}
+            />
+            <Kpi
+              label={s.communitySupporters}
+              value={supporterCount()}
+              hint={s.communitySupportersHint}
+            />
+          </div>
+        </div>
+      </section>
 
       <section className="mx-auto max-w-6xl px-4 py-14 sm:px-6">
         <div className="grid grid-cols-2 gap-3 md:grid-cols-4">

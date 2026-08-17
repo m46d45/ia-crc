@@ -1,7 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useMemo, useState } from "react";
 import { PageIntro } from "@/components/site-shell";
-import { MEMBER_GROUPS, type MemberGroup } from "@/data/site";
+import { MEMBER_GROUPS, SUPPORTERS, type MemberGroup, type SupportOffer } from "@/data/site";
 import { useI18n } from "@/i18n/provider";
 
 export const Route = createFileRoute("/members")({ component: MembersPage });
@@ -20,6 +20,14 @@ function MembersPage() {
         people: orgMatch ? g.people : g.people.filter((name) => name.toLowerCase().includes(query)),
       };
     }).filter((g) => g.people.length > 0);
+  }, [query]);
+
+  const supporters = useMemo(() => {
+    if (!query) return SUPPORTERS;
+    return SUPPORTERS.filter((s) => {
+      const blob = [s.org, ...s.contacts].join(" ").toLowerCase();
+      return blob.includes(query);
+    });
   }, [query]);
 
   const sections: { key: MemberGroup["country"]; title: string }[] = [
@@ -69,6 +77,45 @@ function MembersPage() {
           );
         })}
         {groups.length === 0 ? <p className="text-muted">{t.membersPage.empty}</p> : null}
+
+        <div id="supporters">
+          <h2 className="font-display text-2xl font-medium text-navy">{t.membersPage.supporters}</h2>
+          {supporters.length === 0 ? (
+            <p className="mt-4 text-muted">{t.membersPage.emptySupporters}</p>
+          ) : (
+            <div className="mt-5 grid gap-4 md:grid-cols-2">
+              {supporters.map((s) => (
+                <article key={s.org} className="rounded-xl border border-line bg-surface p-5">
+                  <h3 className="font-medium text-navy">{s.org}</h3>
+                  <p className="mt-1 text-xs uppercase tracking-wide text-subtle">
+                    {s.contacts.length} {t.membersPage.supporterPeople}
+                  </p>
+                  <ul className="mt-3 space-y-1 text-sm text-muted">
+                    {s.contacts.map((name) => (
+                      <li key={name}>{name}</li>
+                    ))}
+                  </ul>
+                  <p className="mt-4 text-xs font-medium uppercase tracking-wide text-subtle">
+                    {t.membersPage.offers}
+                  </p>
+                  <ul className="mt-2 flex flex-wrap gap-1.5">
+                    {s.offers.map((offer: SupportOffer) => (
+                      <li
+                        key={offer}
+                        className="rounded-full bg-sand px-2.5 py-0.5 text-xs text-navy"
+                      >
+                        {t.supportOffer[offer]}
+                      </li>
+                    ))}
+                  </ul>
+                  <p className="mt-3 text-xs text-muted">
+                    {t.membersPage.rwgs}: {s.rwgs.join(" · ")}
+                  </p>
+                </article>
+              ))}
+            </div>
+          )}
+        </div>
 
         <figure className="overflow-hidden rounded-xl border border-line bg-surface">
           <img src="/images/universities.png" alt="" className="w-full object-contain p-6" />
