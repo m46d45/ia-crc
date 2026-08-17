@@ -55,7 +55,7 @@ function Home() {
       </section>
 
       <section className="border-b border-line bg-surface">
-        <div className="mx-auto grid max-w-6xl grid-cols-2 divide-x divide-line sm:grid-cols-4">
+        <div className="mx-auto grid max-w-6xl grid-cols-2 divide-x divide-line sm:grid-cols-3 lg:grid-cols-5">
           {STATS.map((stat) => (
             <div key={stat.label.en} className="px-4 py-7 sm:px-6 sm:py-8">
               <p className="font-display text-3xl font-medium tracking-tight text-navy sm:text-4xl">{stat.value}</p>

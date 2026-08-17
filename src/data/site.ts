@@ -537,9 +537,58 @@ export const MEMBER_GROUPS: MemberGroup[] = [
   { org: "PT Aditya EC", country: "industry", people: ["Herryan Kendra Kaharudin"] },
 ];
 
+export type SupportOffer = "needs" | "experts" | "data" | "labs" | "funding";
+
+export const SUPPORTERS: {
+  org: string;
+  country: "id";
+  kind: "university" | "industry";
+  contacts: string[];
+  offers: SupportOffer[];
+  rwgs: string[];
+}[] = [
+  {
+    org: "Universitas Singaperbangsa Karawang",
+    country: "id",
+    kind: "university",
+    contacts: ["Amalia Rizka Sugiarto"],
+    offers: ["needs"],
+    rwgs: ["RWG-01", "RWG-02", "RWG-04", "RWG-08"],
+  },
+  {
+    org: "Universitas Sriwijaya",
+    country: "id",
+    kind: "university",
+    contacts: ["Nyimas Siti Yuliani Saptaprima"],
+    offers: ["needs", "experts", "data", "labs", "funding"],
+    rwgs: ["RWG-02", "RWG-03", "RWG-04", "RWG-06", "RWG-07", "RWG-08"],
+  },
+  {
+    org: "PT PP (Persero) Tbk",
+    country: "id",
+    kind: "industry",
+    contacts: ["Sari Ria Indah", "Rangga Hidayat Gobel"],
+    offers: ["needs", "data"],
+    rwgs: ["RWG-02", "RWG-04"],
+  },
+];
+
+export function memberCount() {
+  return MEMBER_GROUPS.reduce((n, g) => n + g.people.length, 0);
+}
+
+export function universityCount() {
+  return MEMBER_GROUPS.filter((g) => g.country !== "industry").length;
+}
+
+export function supporterCount() {
+  return SUPPORTERS.length;
+}
+
 export const STATS = [
-  { value: "8", label: { en: "Research working groups", id: "Kelompok kerja riset" } },
-  { value: "25+", label: { en: "Universities", id: "Perguruan tinggi" } },
-  { value: "70+", label: { en: "Researchers", id: "Peneliti" } },
+  { value: String(RWGS.length), label: { en: "Research working groups", id: "Kelompok kerja riset" } },
+  { value: String(universityCount()), label: { en: "Universities", id: "Perguruan tinggi" } },
+  { value: String(memberCount()), label: { en: "Researchers", id: "Peneliti" } },
+  { value: String(supporterCount()), label: { en: "Supporters", id: "Pendukung" } },
   { value: "2023", label: { en: "Established", id: "Didirikan" } },
 ];

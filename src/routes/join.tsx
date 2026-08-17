@@ -1,7 +1,7 @@
-import { createFileRoute } from "@tanstack/react-router";
+import { createFileRoute, Link } from "@tanstack/react-router";
 import { PageIntro } from "@/components/site-shell";
 import { Button } from "@/components/ui/button";
-import { LINKS } from "@/data/site";
+import { LINKS, SUPPORTERS } from "@/data/site";
 import { useI18n } from "@/i18n/provider";
 
 export const Route = createFileRoute("/join")({ component: JoinPage });
@@ -36,6 +36,20 @@ function JoinPage() {
             </a>
           </Button>
         </article>
+      </section>
+      <section className="mx-auto max-w-6xl px-4 pb-8 sm:px-6">
+        <h2 className="font-display text-2xl font-medium text-navy">{t.membersPage.supporters}</h2>
+        <ul className="mt-4 divide-y divide-line border-y border-line">
+          {SUPPORTERS.map((s) => (
+            <li key={s.org} className="py-3">
+              <p className="font-medium text-navy">{s.org}</p>
+              <p className="mt-1 text-sm text-muted">{s.contacts.join(" · ")}</p>
+            </li>
+          ))}
+        </ul>
+        <Link to="/members" hash="supporters" className="mt-4 inline-block text-sm font-medium text-navy">
+          {t.membersPage.supporters}
+        </Link>
       </section>
       <p className="mx-auto max-w-6xl px-4 pb-16 text-sm text-muted sm:px-6">{p.note}</p>
     </main>
