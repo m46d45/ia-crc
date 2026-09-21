@@ -17,12 +17,15 @@ export const COPY = {
       contact: "Contact",
       join: "Join us",
       signIn: "Sign in",
+      more: "More",
+      language: "Language",
     },
     hero: {
       kicker: "A bilateral research forum · est. 2023",
       lead: "A place for Indonesian and Australian academics to collaborate on the construction industry’s hardest problems — productivity, safety, resilience, and the next generation of infrastructure.",
       ctaPrimary: "Become a member",
       ctaSecondary: "Explore research",
+      imageAlt: "IA-CRC founding workshop at ITB Jakarta Campus, November 2023",
     },
     aboutPreview: {
       kicker: "About the forum",
@@ -118,6 +121,9 @@ export const COPY = {
       lookupError: "That DOI or URL could not be read.",
       submitError: "The paper could not be added. Try again.",
       success: "Added to the list and posted in News.",
+      pending:
+        "Received. The secretariat will review it before it appears on the public list and in News.",
+      pendingBadge: "Awaiting review",
       duplicate: "That paper is already on the list.",
       listTitle: "The list",
       empty: "No papers yet. The first DOI from a member will appear here.",
@@ -400,12 +406,15 @@ export const COPY = {
       contact: "Kontak",
       join: "Bergabung",
       signIn: "Masuk",
+      more: "Lainnya",
+      language: "Bahasa",
     },
     hero: {
       kicker: "Forum riset bilateral · berdiri 2023",
       lead: "Tempat akademisi Indonesia dan Australia berkolaborasi menjawab tantangan industri konstruksi — produktivitas, keselamatan, resiliensi, dan infrastruktur generasi berikutnya.",
       ctaPrimary: "Menjadi anggota",
       ctaSecondary: "Jelajahi riset",
+      imageAlt: "Lokakarya pendirian IA-CRC di Kampus ITB Jakarta, November 2023",
     },
     aboutPreview: {
       kicker: "Tentang forum",
@@ -502,6 +511,9 @@ export const COPY = {
       lookupError: "DOI atau URL itu tidak dapat dibaca.",
       submitError: "Makalah tidak dapat ditambahkan. Coba lagi.",
       success: "Sudah masuk daftar dan diumumkan di Berita.",
+      pending:
+        "Diterima. Sekretariat akan meninjau sebelum muncul di daftar publik dan Berita.",
+      pendingBadge: "Menunggu tinjauan",
       duplicate: "Makalah itu sudah ada di daftar.",
       listTitle: "Daftar",
       empty: "Belum ada makalah. DOI pertama dari anggota akan muncul di sini.",

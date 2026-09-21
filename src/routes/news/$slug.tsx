@@ -6,12 +6,13 @@ import { NewsMeta } from "@/components/news-meta";
 import { publicationToNews, readLocalPublications, type NewsItem } from "@/data/publications";
 import { newsBySlug } from "@/data/site";
 import { useI18n } from "@/i18n/provider";
+import { pickLang, pickLangList } from "@/lib/i18n-text";
 import { listPublications } from "@/lib/publication-fns";
 
 export const Route = createFileRoute("/news/$slug")({
   loader: async ({ params }) => {
     const editorial = newsBySlug(params.slug);
-    if (editorial) return { item: editorial };
+    if (editorial) return { item: editorial as NewsItem };
     if (params.slug.startsWith("pub-")) {
       const { publications } = await listPublications();
       const pub = publications.find((p) => `pub-${p.id}` === params.slug);
@@ -25,7 +26,7 @@ export const Route = createFileRoute("/news/$slug")({
 
 function NewsArticle() {
   const loaded = Route.useLoaderData();
-  const { t } = useI18n();
+  const { t, lang } = useI18n();
   const [item, setItem] = useState<NewsItem | null>(loaded.item);
 
   useEffect(() => {
@@ -45,6 +46,8 @@ function NewsArticle() {
     );
   }
 
+  const paragraphs = pickLangList(item.body, lang);
+
   return (
     <main>
       <article className="border-b border-line bg-navy text-paper">
@@ -54,14 +57,16 @@ function NewsArticle() {
             {t.newsPage.back}
           </Link>
           <div className="mt-6">
-            <NewsMeta date={item.date} category={item.category} light />
+            <NewsMeta date={pickLang(item.date, lang)} category={item.category} light />
           </div>
-          <h1 className="mt-3 font-display text-3xl font-medium tracking-tight sm:text-4xl">{item.title}</h1>
+          <h1 className="mt-3 font-display text-3xl font-medium tracking-tight sm:text-4xl">
+            {pickLang(item.title, lang)}
+          </h1>
         </div>
       </article>
       <div className="mx-auto max-w-3xl px-4 py-12 sm:px-6">
         <div className="space-y-5 text-base leading-relaxed text-ink">
-          {item.body.map((p) => (
+          {paragraphs.map((p) => (
             <p key={p}>{p}</p>
           ))}
         </div>
@@ -69,7 +74,7 @@ function NewsArticle() {
           <div className="mt-10">
             <Button asChild>
               <a href={item.href} target="_blank" rel="noreferrer">
-                {item.hrefLabel ?? t.newsPage.visit}
+                {item.hrefLabel ? pickLang(item.hrefLabel, lang) : t.newsPage.visit}
                 <ArrowUpRight />
               </a>
             </Button>

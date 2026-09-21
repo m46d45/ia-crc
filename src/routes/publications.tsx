@@ -61,7 +61,10 @@ function PublicationsPage() {
   }, []);
 
   const items = useMemo(
-    () => mergePublications(loaded.publications, local),
+    () =>
+      mergePublications(loaded.publications, local).filter(
+        (item) => (item.status ?? "approved") !== "pending" || local.some((l) => l.id === item.id),
+      ),
     [loaded.publications, local],
   );
 
@@ -98,10 +101,12 @@ function PublicationsPage() {
         year: preview?.year || undefined,
         container: preview?.container || undefined,
         kind: preview?.kind,
-      })) as { publication: Publication; duplicate: boolean };
+      })) as { publication: Publication; duplicate: boolean; pending?: boolean };
       writeLocalPublication(result.publication);
       setLocal(readLocalPublications());
-      setNotice(result.duplicate ? p.duplicate : p.success);
+      setNotice(
+        result.duplicate ? p.duplicate : result.pending ? p.pending : p.success,
+      );
       setSource("");
       setNote("");
       setPreview(null);
@@ -132,6 +137,11 @@ function PublicationsPage() {
             {items.map((item) => (
               <li key={item.id} className="rounded-xl border border-line bg-surface p-5 shadow-card">
                 <p className="text-xs text-subtle">{publicationMeta(item)}</p>
+                {item.status === "pending" ? (
+                  <p className="mt-1 text-xs font-medium uppercase tracking-[0.12em] text-blue">
+                    {p.pendingBadge}
+                  </p>
+                ) : null}
                 <h3 className="mt-1 font-display text-2xl font-medium text-navy">{item.title}</h3>
                 <p className="mt-2 text-sm text-muted">{item.authors}</p>
                 {item.note ? <p className="mt-3 text-sm text-ink/80">{item.note}</p> : null}

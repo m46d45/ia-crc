@@ -6,6 +6,7 @@ import { NewsMeta } from "@/components/news-meta";
 import { mergeNews, readLocalPublications, type Publication } from "@/data/publications";
 import { newsByDate } from "@/data/site";
 import { useI18n } from "@/i18n/provider";
+import { pickLang } from "@/lib/i18n-text";
 import { listPublications } from "@/lib/publication-fns";
 
 export const Route = createFileRoute("/news/")({
@@ -14,7 +15,7 @@ export const Route = createFileRoute("/news/")({
 });
 
 function NewsIndex() {
-  const { t } = useI18n();
+  const { t, lang } = useI18n();
   const loaded = Route.useLoaderData();
   const [local, setLocal] = useState<Publication[]>([]);
   useEffect(() => {
@@ -39,9 +40,11 @@ function NewsIndex() {
                 params={{ slug: item.slug }}
                 className="block rounded-xl border border-line bg-surface p-6 shadow-card transition-colors hover:border-navy/25"
               >
-                <NewsMeta date={item.date} category={item.category} />
-                <h2 className="mt-2 font-display text-2xl font-medium text-navy">{item.title}</h2>
-                <p className="mt-3 max-w-3xl text-muted">{item.excerpt}</p>
+                <NewsMeta date={pickLang(item.date, lang)} category={item.category} />
+                <h2 className="mt-2 font-display text-2xl font-medium text-navy">
+                  {pickLang(item.title, lang)}
+                </h2>
+                <p className="mt-3 max-w-3xl text-muted">{pickLang(item.excerpt, lang)}</p>
                 <span className="mt-4 inline-flex items-center gap-1.5 text-sm font-medium text-navy">
                   {t.readMore}
                   <ArrowRight className="size-4" />

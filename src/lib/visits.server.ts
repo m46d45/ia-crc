@@ -23,7 +23,23 @@ async function fromAbacus(mode: "get" | "hit"): Promise<VisitStats> {
   const data = (await res.json()) as { value?: number };
   const n = Number(data.value ?? 0);
   if (!Number.isFinite(n) || n < 0) return EMPTY;
+  // Abacus only exposes a single counter — treat it as unique visitors.
   return { visits: n, visitors: n };
+}
+
+async function aggregateSql(): Promise<VisitStats> {
+  const { getSql } = await import("@/lib/db");
+  const sql = await getSql();
+  const rows = await sql.query<{ visits: number; visitors: number }>(
+    `select
+       count(*)::int as visits,
+       count(distinct visitor_id)::int as visitors
+     from site_visit`,
+  );
+  return {
+    visits: Number(rows[0]?.visits ?? 0),
+    visitors: Number(rows[0]?.visitors ?? 0),
+  };
 }
 
 async function fromSql(
@@ -39,11 +55,7 @@ async function fromSql(
       path || "/",
     ]);
   }
-  const rows = await sql.query<{ visitor_id: string }>("select visitor_id from site_visit");
-  return {
-    visits: rows.length,
-    visitors: new Set(rows.map((r) => r.visitor_id)).size,
-  };
+  return aggregateSql();
 }
 
 export async function getVisitStats(): Promise<VisitStats> {

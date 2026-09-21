@@ -1,7 +1,9 @@
+import type { LocalizedParagraphs, LocalizedText } from "@/lib/i18n-text";
 import type { NEWS } from "./site";
 import catalog from "./member-publications.json";
 
 export type PublicationKind = "article" | "book" | "chapter" | "conference";
+export type PublicationStatus = "approved" | "pending";
 
 export type Publication = {
   id: string;
@@ -12,6 +14,7 @@ export type Publication = {
   year: string | null;
   dateSort?: string;
   kind?: PublicationKind;
+  status?: PublicationStatus;
   container: string | null;
   submitterName: string;
   submitterEmail: string;
@@ -20,7 +23,18 @@ export type Publication = {
   createdAt: string;
 };
 
-export type NewsItem = (typeof NEWS)[number];
+/** Editorial or auto-generated news row. Localized fields may be plain strings. */
+export type NewsItem = {
+  slug: string;
+  date: string | LocalizedText;
+  dateSort: string;
+  category: "conference" | "publication" | "announcement";
+  title: string | LocalizedText;
+  excerpt: string | LocalizedText;
+  body: string[] | LocalizedParagraphs;
+  href?: string;
+  hrefLabel?: string | LocalizedText;
+};
 
 const LOCAL_KEY = "ia-crc-publications-v1";
 
@@ -37,10 +51,10 @@ export function doiUrl(doi: string) {
   return `https://doi.org/${doi}`;
 }
 
-export function formatDisplayDate(iso: string) {
+export function formatDisplayDate(iso: string, locale = "en-GB") {
   const d = new Date(iso);
   if (Number.isNaN(d.getTime())) return iso.slice(0, 10);
-  return new Intl.DateTimeFormat("en-GB", {
+  return new Intl.DateTimeFormat(locale, {
     day: "numeric",
     month: "long",
     year: "numeric",
@@ -53,22 +67,37 @@ export function publicationToNews(p: Publication): NewsItem {
   const who = [p.submitterName, p.institution].filter(Boolean).join(", ");
   return {
     slug: `pub-${p.id}`,
-    date: formatDisplayDate(p.createdAt),
+    date: {
+      en: formatDisplayDate(p.createdAt, "en-GB"),
+      id: formatDisplayDate(p.createdAt, "id-ID"),
+    },
     dateSort: p.createdAt.slice(0, 10),
     category: "publication",
     title: p.title,
-    excerpt: `${p.authors} (${year}). Added by ${p.submitterName}.`,
-    body: [
-      citation,
-      p.note
-        ? `${who} notes that this work grew from IA-CRC conversations: ${p.note}`
-        : `Submitted by ${who}. The paper was initiated through conversation in the IA-CRC community — it does not have to be a formal IA-CRC project.`,
-      p.doi
-        ? `DOI: ${p.doi}`
-        : "The full text is available from the link below.",
-    ],
+    excerpt: {
+      en: `${p.authors} (${year}). Added by ${p.submitterName}.`,
+      id: `${p.authors} (${year}). Ditambahkan oleh ${p.submitterName}.`,
+    },
+    body: {
+      en: [
+        citation,
+        p.note
+          ? `${who} notes that this work grew from IA-CRC conversations: ${p.note}`
+          : `Submitted by ${who}. The paper was initiated through conversation in the IA-CRC community — it does not have to be a formal IA-CRC project.`,
+        p.doi ? `DOI: ${p.doi}` : "The full text is available from the link below.",
+      ],
+      id: [
+        citation,
+        p.note
+          ? `${who} mencatat bahwa karya ini tumbuh dari percakapan IA-CRC: ${p.note}`
+          : `Dikirim oleh ${who}. Makalah ini berawal dari percakapan komunitas IA-CRC — tidak harus menjadi proyek formal forum.`,
+        p.doi ? `DOI: ${p.doi}` : "Teks lengkap tersedia melalui tautan di bawah.",
+      ],
+    },
     href: p.url,
-    hrefLabel: p.doi ? `doi:${p.doi}` : "Open the paper",
+    hrefLabel: p.doi
+      ? `doi:${p.doi}`
+      : { en: "Open the paper", id: "Buka makalah" },
   };
 }
 
@@ -148,7 +177,15 @@ export function writeLocalPublication(item: Publication) {
   window.localStorage.setItem(LOCAL_KEY, JSON.stringify(next));
 }
 
-export function mergeNews(editorial: NewsItem[], publications: Publication[]) {
-  const extra = publications.map(publicationToNews);
+export function mergeNews(
+  editorial: Array<(typeof NEWS)[number]>,
+  publications: Publication[],
+) {
+  const listed = publications.filter((p) => (p.status ?? "approved") !== "pending");
+  const extra = listed.map(publicationToNews);
   return [...editorial, ...extra].sort((a, b) => b.dateSort.localeCompare(a.dateSort));
+}
+
+export function isListedPublication(p: Publication) {
+  return (p.status ?? "approved") !== "pending";
 }
