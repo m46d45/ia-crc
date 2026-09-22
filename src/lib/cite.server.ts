@@ -1,4 +1,4 @@
-import { doiUrl, extractDoi, yearToSort, type PublicationKind } from "@/data/publications";
+import { doiUrl, extractDoi, type PublicationKind } from "@/data/publications";
 
 export type CiteResult = {
   doi: string | null;

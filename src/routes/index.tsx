@@ -6,6 +6,7 @@ import { mergeNews, readLocalPublications, type Publication } from "@/data/publi
 import { useI18n } from "@/i18n/provider";
 import { Button } from "@/components/ui/button";
 import { NewsMeta } from "@/components/news-meta";
+import { pickLang } from "@/lib/i18n-text";
 import { listPublications } from "@/lib/publication-fns";
 
 export const Route = createFileRoute("/")({
@@ -32,18 +33,24 @@ function Home() {
       <section className="relative isolate min-h-[78svh] overflow-hidden bg-navy text-paper">
         <img
           src="/images/workshop-2023.jpg"
-          alt=""
-          className="absolute inset-0 h-full w-full object-cover object-[50%_28%] opacity-55"
+          alt={t.hero.imageAlt}
+          className="absolute inset-0 h-full w-full scale-105 object-cover object-[50%_28%] opacity-55 motion-safe:animate-hero-pan"
         />
         <div className="absolute inset-0 bg-gradient-to-t from-navy-deep via-navy/70 to-navy/45" />
         <div className="relative mx-auto flex min-h-[78svh] max-w-6xl flex-col justify-end px-4 pb-14 pt-24 sm:px-6 sm:pb-20">
-          <p className="text-xs font-medium uppercase tracking-[0.2em] text-paper/70">{t.hero.kicker}</p>
-          <h1 className="mt-4 max-w-3xl font-display text-[2.35rem] font-medium leading-[1.08] tracking-tight sm:text-6xl">
+          <p className="text-xs font-medium uppercase tracking-[0.2em] text-paper/70 motion-safe:animate-fade-up">
+            {t.hero.kicker}
+          </p>
+          <h1 className="mt-4 max-w-3xl font-display text-[2.35rem] font-medium leading-[1.08] tracking-tight motion-safe:animate-fade-up motion-safe:[animation-delay:80ms] sm:text-6xl">
             {t.fullName}
           </h1>
-          <p className="mt-3 font-display text-xl italic text-paper/80 sm:text-2xl">{t.tagline}</p>
-          <p className="mt-5 max-w-2xl text-base leading-relaxed text-paper/78 sm:text-lg">{t.hero.lead}</p>
-          <div className="mt-8 flex flex-wrap gap-3">
+          <p className="mt-3 font-display text-xl italic text-paper/80 motion-safe:animate-fade-up motion-safe:[animation-delay:140ms] sm:text-2xl">
+            {t.tagline}
+          </p>
+          <p className="mt-5 max-w-2xl text-base leading-relaxed text-paper/78 motion-safe:animate-fade-up motion-safe:[animation-delay:200ms] sm:text-lg">
+            {t.hero.lead}
+          </p>
+          <div className="mt-8 flex flex-wrap gap-3 motion-safe:animate-fade-up motion-safe:[animation-delay:280ms]">
             <Button asChild size="lg">
               <Link to="/join">{t.hero.ctaPrimary}</Link>
             </Button>
@@ -82,9 +89,11 @@ function Home() {
                   params={{ slug: item.slug }}
                   className="block rounded-xl border border-line bg-surface p-6 shadow-card transition-colors hover:border-navy/25"
                 >
-                  <NewsMeta date={item.date} category={item.category} />
-                  <h3 className="mt-2 font-display text-2xl font-medium text-navy">{item.title}</h3>
-                  <p className="mt-3 max-w-3xl text-muted">{item.excerpt}</p>
+                  <NewsMeta date={pickLang(item.date, lang)} category={item.category} />
+                  <h3 className="mt-2 font-display text-2xl font-medium text-navy">
+                    {pickLang(item.title, lang)}
+                  </h3>
+                  <p className="mt-3 max-w-3xl text-muted">{pickLang(item.excerpt, lang)}</p>
                   <span className="mt-4 inline-flex items-center gap-1.5 text-sm font-medium text-navy">
                     {t.readMore}
                     <ArrowRight className="size-4" />

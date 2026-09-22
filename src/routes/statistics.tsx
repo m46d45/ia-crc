@@ -40,7 +40,10 @@ function StatisticsPage() {
   }, []);
 
   const papers = useMemo(
-    () => mergePublications(loaded.publications, local),
+    () =>
+      mergePublications(loaded.publications, local).filter(
+        (p) => (p.status ?? "approved") !== "pending",
+      ),
     [loaded.publications, local],
   );
   const stats = useMemo(() => computePublicationStats(papers), [papers]);

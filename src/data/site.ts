@@ -360,50 +360,78 @@ export const ACTIVITIES: {
 
 export const NEWS: {
   slug: string;
-  date: string;
+  date: { en: string; id: string };
   dateSort: string;
   category: "conference" | "publication" | "announcement";
-  title: string;
-  excerpt: string;
-  body: string[];
+  title: { en: string; id: string };
+  excerpt: { en: string; id: string };
+  body: { en: string[]; id: string[] };
   href?: string;
-  hrefLabel?: string;
+  hrefLabel?: { en: string; id: string };
 }[] = [
   {
     slug: "ia-crc-supports-concern-2026",
-    date: "17 August 2026",
+    date: { en: "17 August 2026", id: "17 Agustus 2026" },
     dateSort: "2026-08-17",
     category: "conference",
-    title: "IA-CRC supports ConCERN 2026 — Australian members will take part in Bandung",
-    excerpt:
-      "The forum endorses the 3rd International Conference for Civil Engineering Research Network at ITB. Members from Australia will join colleagues in Indonesia.",
-    body: [
-      "IA-CRC is pleased to support ConCERN 2026 — the 3rd International Conference for Civil Engineering Research Network. The two-day meeting will be held on 25–26 November 2026 at Aula Barat, Institut Teknologi Bandung (Ganesha Campus), Bandung, Indonesia.",
-      "ConCERN is organised by the Civil Engineering Programme of Institut Teknologi Bandung. This year’s theme is “Beyond Civil Engineering: Multidisciplinary Research Networks for Resilient & Sustainable Infrastructure.” Tracks include construction and infrastructure management, structural and geotechnical engineering, water resources, transportation, integrated civil systems, multidisciplinary engineering for infrastructure, and the socio-technical, policy, and governance of infrastructure.",
-      "Members from Australia will take part alongside Indonesian colleagues — presenting, chairing, and helping to host a meeting that sits close to the work of several IA-CRC research groups, especially International Construction, Resilience & Sustainability, and Construction Technology & Innovation.",
-      "Accepted papers may appear in IOP Conference Series: Earth and Environmental Science (Scopus) and the ITB Civil Engineering Journal (SINTA). Full papers are due by 13 September 2026. Registration and payment close on 25 October 2026. Members in both countries are encouraged to submit, attend, and connect in Bandung.",
-      "Details, the call for papers, and registration are on the conference website.",
-    ],
+    title: {
+      en: "IA-CRC supports ConCERN 2026 — Australian members will take part in Bandung",
+      id: "IA-CRC mendukung ConCERN 2026 — anggota Australia akan hadir di Bandung",
+    },
+    excerpt: {
+      en: "The forum endorses the 3rd International Conference for Civil Engineering Research Network at ITB. Members from Australia will join colleagues in Indonesia.",
+      id: "Forum mendukung 3rd International Conference for Civil Engineering Research Network di ITB. Anggota dari Australia akan bergabung dengan kolega di Indonesia.",
+    },
+    body: {
+      en: [
+        "IA-CRC is pleased to support ConCERN 2026 — the 3rd International Conference for Civil Engineering Research Network. The two-day meeting will be held on 25–26 November 2026 at Aula Barat, Institut Teknologi Bandung (Ganesha Campus), Bandung, Indonesia.",
+        "ConCERN is organised by the Civil Engineering Programme of Institut Teknologi Bandung. This year’s theme is “Beyond Civil Engineering: Multidisciplinary Research Networks for Resilient & Sustainable Infrastructure.” Tracks include construction and infrastructure management, structural and geotechnical engineering, water resources, transportation, integrated civil systems, multidisciplinary engineering for infrastructure, and the socio-technical, policy, and governance of infrastructure.",
+        "Members from Australia will take part alongside Indonesian colleagues — presenting, chairing, and helping to host a meeting that sits close to the work of several IA-CRC research groups, especially International Construction, Resilience & Sustainability, and Construction Technology & Innovation.",
+        "Accepted papers may appear in IOP Conference Series: Earth and Environmental Science (Scopus) and the ITB Civil Engineering Journal (SINTA). Full papers are due by 13 September 2026. Registration and payment close on 25 October 2026. Members in both countries are encouraged to submit, attend, and connect in Bandung.",
+        "Details, the call for papers, and registration are on the conference website.",
+      ],
+      id: [
+        "IA-CRC dengan senang hati mendukung ConCERN 2026 — 3rd International Conference for Civil Engineering Research Network. Pertemuan dua hari ini akan digelar pada 25–26 November 2026 di Aula Barat, Institut Teknologi Bandung (Kampus Ganesha), Bandung, Indonesia.",
+        "ConCERN diselenggarakan oleh Program Studi Teknik Sipil Institut Teknologi Bandung. Tema tahun ini adalah “Beyond Civil Engineering: Multidisciplinary Research Networks for Resilient & Sustainable Infrastructure.” Topik mencakup manajemen konstruksi dan infrastruktur, struktur dan geoteknik, sumber daya air, transportasi, sistem sipil terpadu, teknik multidisiplin untuk infrastruktur, serta aspek sosio-teknis, kebijakan, dan tata kelola infrastruktur.",
+        "Anggota dari Australia akan berpartisipasi bersama kolega Indonesia — menyajikan makalah, memimpin sesi, dan membantu menyelenggarakan pertemuan yang dekat dengan kerja beberapa kelompok riset IA-CRC, terutama International Construction, Resilience & Sustainability, dan Construction Technology & Innovation.",
+        "Makalah yang diterima dapat terbit di IOP Conference Series: Earth and Environmental Science (Scopus) dan ITB Civil Engineering Journal (SINTA). Batas makalah lengkap 13 September 2026. Registrasi dan pembayaran ditutup 25 Oktober 2026. Anggota di kedua negara diundang untuk mengirim makalah, hadir, dan bertemu di Bandung.",
+        "Rincian, call for papers, dan registrasi tersedia di situs konferensi.",
+      ],
+    },
     href: "https://concern.itb.ac.id/",
-    hrefLabel: "ConCERN 2026 website",
+    hrefLabel: { en: "ConCERN 2026 website", id: "Situs ConCERN 2026" },
   },
   {
     slug: "ia-crc-supports-go-build-2026",
-    date: "17 August 2026",
+    date: { en: "17 August 2026", id: "17 Agustus 2026" },
     dateSort: "2026-08-17",
     category: "conference",
-    title: "IA-CRC supports GO BUILD 2026 and encourages members to take part",
-    excerpt:
-      "The forum endorses the 1st International Online Conference on Sustainable Construction and invites members to present, attend, and connect.",
-    body: [
-      "IA-CRC is pleased to support GO BUILD 2026 — the 1st International Online Conference on Sustainable Construction: Globalize, Organize, Build, Unite, Innovate, Lead, Develop. The three-day virtual meeting will be held on 18–20 November 2026.",
-      "The conference is hosted by the MDPI journals Sustainability and Designs. It is chaired by Dr Igor Martek of Deakin University, coordinator of IA-CRC’s International Construction working group, together with Dr Mehdi Amirkhani of Adelaide University.",
-      "GO BUILD brings together researchers, educators, students, industry professionals, and policymakers on sustainable building in the Global South, workforce development, resilient infrastructure, emerging technologies, regulation, and built-environment education. These themes sit close to the work of several IA-CRC research groups.",
-      "Members are encouraged to take part — as presenters, session chairs, or delegates. Regular registration remains open until 13 November 2026. Early-bird registration closes on 22 August 2026.",
-      "Details, the programme, and registration are on the conference website.",
-    ],
+    title: {
+      en: "IA-CRC supports GO BUILD 2026 and encourages members to take part",
+      id: "IA-CRC mendukung GO BUILD 2026 dan mengajak anggota berpartisipasi",
+    },
+    excerpt: {
+      en: "The forum endorses the 1st International Online Conference on Sustainable Construction and invites members to present, attend, and connect.",
+      id: "Forum mendukung 1st International Online Conference on Sustainable Construction dan mengundang anggota untuk menyajikan, hadir, dan berjejaring.",
+    },
+    body: {
+      en: [
+        "IA-CRC is pleased to support GO BUILD 2026 — the 1st International Online Conference on Sustainable Construction: Globalize, Organize, Build, Unite, Innovate, Lead, Develop. The three-day virtual meeting will be held on 18–20 November 2026.",
+        "The conference is hosted by the MDPI journals Sustainability and Designs. It is chaired by Dr Igor Martek of Deakin University, coordinator of IA-CRC’s International Construction working group, together with Dr Mehdi Amirkhani of Adelaide University.",
+        "GO BUILD brings together researchers, educators, students, industry professionals, and policymakers on sustainable building in the Global South, workforce development, resilient infrastructure, emerging technologies, regulation, and built-environment education. These themes sit close to the work of several IA-CRC research groups.",
+        "Members are encouraged to take part — as presenters, session chairs, or delegates. Regular registration remains open until 13 November 2026. Early-bird registration closes on 22 August 2026.",
+        "Details, the programme, and registration are on the conference website.",
+      ],
+      id: [
+        "IA-CRC dengan senang hati mendukung GO BUILD 2026 — 1st International Online Conference on Sustainable Construction: Globalize, Organize, Build, Unite, Innovate, Lead, Develop. Pertemuan daring tiga hari ini digelar pada 18–20 November 2026.",
+        "Konferensi ini diampu jurnal MDPI Sustainability dan Designs. Dipimpin Dr Igor Martek dari Deakin University, koordinator kelompok International Construction IA-CRC, bersama Dr Mehdi Amirkhani dari Adelaide University.",
+        "GO BUILD mempertemukan peneliti, pendidik, mahasiswa, profesional industri, dan pembuat kebijakan mengenai bangunan berkelanjutan di Global South, pengembangan tenaga kerja, infrastruktur tangguh, teknologi baru, regulasi, dan pendidikan lingkungan binaan. Tema-tema ini dekat dengan kerja beberapa kelompok riset IA-CRC.",
+        "Anggota diundang berpartisipasi — sebagai penyaji, ketua sesi, atau peserta. Registrasi reguler dibuka hingga 13 November 2026. Early-bird ditutup 22 Agustus 2026.",
+        "Rincian, program, dan registrasi tersedia di situs konferensi.",
+      ],
+    },
     href: "https://sciforum.net/event/GOBUILD2026",
-    hrefLabel: "GO BUILD 2026 website",
+    hrefLabel: { en: "GO BUILD 2026 website", id: "Situs GO BUILD 2026" },
   },
 ];
 
