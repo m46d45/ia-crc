@@ -65,6 +65,17 @@ function NewsArticle() {
         </div>
       </article>
       <div className="mx-auto max-w-3xl px-4 py-12 sm:px-6">
+        {item.image ? (
+          <figure className="mb-10">
+            <img
+              src={item.image.src}
+              alt={pickLang(item.image.alt, lang)}
+              width={1280}
+              height={720}
+              className="h-auto w-full rounded-md border border-line"
+            />
+          </figure>
+        ) : null}
         <div className="space-y-5 text-base leading-relaxed text-ink">
           {paragraphs.map((p) => (
             <p key={p}>{p}</p>
