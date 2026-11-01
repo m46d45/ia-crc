@@ -195,6 +195,14 @@ export const ACTIVITIES: {
   href?: string;
 }[] = [
   {
+    kind: "seminar",
+    title: { en: "IA-CRC Seminar 2026", id: "Seminar IA-CRC 2026" },
+    date: "28 November 2026",
+    dateSort: "2026-11-28",
+    place: { en: "Mercure Resort Sanur, Bali (hybrid)", id: "Mercure Resort Sanur, Bali (hibrida)" },
+    href: "https://bit.ly/Seminar-IA-CRC-2026",
+  },
+  {
     kind: "conference",
     title: {
       en: "ConCERN 2026 — 3rd International Conference for Civil Engineering Research Network",
@@ -369,6 +377,36 @@ export const NEWS: {
   href?: string;
   hrefLabel?: { en: string; id: string };
 }[] = [
+  {
+    slug: "ia-crc-seminar-2026-bali",
+    date: { en: "1 November 2026", id: "1 November 2026" },
+    dateSort: "2026-11-01",
+    category: "announcement",
+    title: {
+      en: "IA-CRC Seminar 2026 in Bali: Saturday, 28 November 2026",
+      id: "Seminar IA-CRC 2026 di Bali: Sabtu, 28 November 2026",
+    },
+    excerpt: {
+      en: "The annual IA-CRC seminar will be held in hybrid format at Mercure Resort Sanur, Bali. Registration is open until 21 November 2026.",
+      id: "Seminar tahunan IA-CRC akan diadakan secara hibrida di Mercure Resort Sanur, Bali. Pendaftaran dibuka hingga 21 November 2026.",
+    },
+    body: {
+      en: [
+        "The Indonesia–Australia Collaborative Research in Construction (IA-CRC) will hold the IA-CRC Seminar 2026 on Saturday, 28 November 2026, from 09:00 to 13:00 WITA (Central Indonesia Time, UTC+8), at Mercure Resort Sanur, Bali. The seminar is hybrid, so members can join on site or online. Lunch follows from 13:00 to 14:00.",
+        "The seminar is a half-day forum for IA-CRC members and invited colleagues from Udayana University and the surrounding area. It will review IA-CRC activities in 2026, present research on resilient and sustainable infrastructure, discuss collaborative writing, and set the agenda for 2027. The 2025 seminar was held online; this year’s seminar follows ConCERN-3 in Bandung.",
+        "Programme (WITA): 09:00–09:15 Registration. 09:15–09:30 Opening — Biemo W. Soemardi. 09:30–10:15 Report on IA-CRC activities — Muhamad Abduh. 10:15–11:00 Research on resilient and sustainable infrastructure — Reini D. Wirahadikusumah. 11:00–11:30 Indonesian construction industry issues (article proposal for The Conversation) — Toong Khuan Chan and Igor Martek. 11:30–12:00 Research Working Group reports: 2026 activities and ongoing proposals — RWG 01–08 coordinators. 12:00–12:45 Discussion: new joint research for 2027 (up to three topics) — moderated by Muhamad Abduh. 12:45–13:00 Closing and group photo. 13:00–14:00 Lunch.",
+        "Registration closes on 21 November 2026. The online joining link will be sent to registered participants.",
+      ],
+      id: [
+        "Indonesia–Australia Collaborative Research in Construction (IA-CRC) akan menyelenggarakan Seminar IA-CRC 2026 pada Sabtu, 28 November 2026, pukul 09.00–13.00 WITA (UTC+8), di Mercure Resort Sanur, Bali. Seminar diadakan secara hibrida sehingga anggota dapat hadir di lokasi atau daring. Makan siang pukul 13.00–14.00.",
+        "Seminar ini adalah forum setengah hari bagi anggota IA-CRC dan kolega undangan dari Universitas Udayana dan sekitarnya. Seminar akan meninjau kegiatan IA-CRC tahun 2026, menyajikan riset tentang infrastruktur yang tangguh dan berkelanjutan, membahas penulisan bersama, dan menyusun agenda tahun 2027. Seminar 2025 diadakan daring; seminar tahun ini diadakan setelah ConCERN-3 di Bandung.",
+        "Susunan acara (WITA): 09.00–09.15 Registrasi. 09.15–09.30 Pembukaan — Biemo W. Soemardi. 09.30–10.15 Laporan kegiatan IA-CRC — Muhamad Abduh. 10.15–11.00 Riset infrastruktur yang tangguh dan berkelanjutan — Reini D. Wirahadikusumah. 11.00–11.30 Isu industri konstruksi Indonesia (usulan artikel untuk The Conversation) — Toong Khuan Chan dan Igor Martek. 11.30–12.00 Laporan Kelompok Kerja Riset: kegiatan 2026 dan usulan riset berjalan — koordinator RWG 01–08. 12.00–12.45 Diskusi riset bersama 2027 (maksimal tiga topik) — moderator Muhamad Abduh. 12.45–13.00 Penutupan dan foto bersama. 13.00–14.00 Makan siang.",
+        "Pendaftaran ditutup 21 November 2026. Tautan untuk bergabung daring akan dikirim kepada peserta terdaftar.",
+      ],
+    },
+    href: "https://bit.ly/Seminar-IA-CRC-2026",
+    hrefLabel: { en: "Register for IA-CRC Seminar 2026", id: "Daftar Seminar IA-CRC 2026" },
+  },
   {
     slug: "ia-crc-supports-concern-2026",
     date: { en: "17 August 2026", id: "17 Agustus 2026" },
