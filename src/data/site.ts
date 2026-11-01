@@ -376,6 +376,7 @@ export const NEWS: {
   body: { en: string[]; id: string[] };
   href?: string;
   hrefLabel?: { en: string; id: string };
+  image?: { src: string; alt: { en: string; id: string } };
 }[] = [
   {
     slug: "ia-crc-seminar-2026-bali",
@@ -406,6 +407,10 @@ export const NEWS: {
     },
     href: "https://bit.ly/Seminar-IA-CRC-2026",
     hrefLabel: { en: "Register for IA-CRC Seminar 2026", id: "Daftar Seminar IA-CRC 2026" },
+    image: {
+      src: "/images/ia-crc-seminar-2026-poster.jpg",
+      alt: { en: "IA-CRC Seminar 2026 poster", id: "IA-CRC Seminar 2026 poster" },
+    },
   },
   {
     slug: "ia-crc-supports-concern-2026",
