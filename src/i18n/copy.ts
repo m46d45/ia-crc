@@ -338,7 +338,7 @@ export const COPY = {
       whatsappCta: "Join WhatsApp Group (IA-CRC General)",
       whatsappBody:
         "Approved members and supporters can join the IA-CRC General WhatsApp group.",
-      note: "Forms open in Microsoft Forms. After you submit, the secretariat will place you in the relevant working group and communication channels.",
+      note: "Forms open in Google Forms. After you submit, the secretariat will place you in the relevant working group and communication channels.",
     },
     resourcesPage: {
       title: "Resources",
@@ -735,7 +735,7 @@ export const COPY = {
       whatsappCta: "Join WhatsApp Group (IA-CRC General)",
       whatsappBody:
         "Anggota dan pendukung yang telah disetujui dapat bergabung ke grup WhatsApp IA-CRC General.",
-      note: "Formulir terbuka di Microsoft Forms. Setelah Anda mengirim, sekretariat akan menempatkan Anda di kelompok kerja dan kanal komunikasi yang sesuai.",
+      note: "Formulir terbuka di Google Forms. Setelah Anda mengirim, sekretariat akan menempatkan Anda di kelompok kerja dan kanal komunikasi yang sesuai.",
     },
     resourcesPage: {
       title: "Sumber daya",

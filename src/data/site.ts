@@ -1,8 +1,8 @@
 export const LINKS = {
   memberForm:
-    "https://forms.office.com/Pages/ResponsePage.aspx?id=gxFu22VMXECCznzVP6bp3GNItEHSPX5Os8c_U2BUyEtUMDdGNDBMS0U4UDlFREJFM1A5VlozSDNFRS4u",
+    "https://docs.google.com/forms/d/e/1FAIpQLSfoUmPrOpR3mf0J30MFdnWhcB-vOScWs8rKHwlQY5-7_F29pA/viewform",
   supporterForm:
-    "https://forms.office.com/Pages/ResponsePage.aspx?id=gxFu22VMXECCznzVP6bp3GNItEHSPX5Os8c_U2BUyEtUM0U4QVZQMU1ZQjRXRzlUQUc1Q1lYOFlLVy4u",
+    "https://docs.google.com/forms/d/e/1FAIpQLScOxClus0j96ui3cLimxdKlcK27TcvfLASORzuDnM0ObrEKVQ/viewform",
   proposalTemplate:
     "https://itbdsti.sharepoint.com/:w:/s/AI-CRC/EbVvQIGJ9sRIhPJtaHbtpoQBIvESnnnOuYIOEqCmiKO56A?e=U40p5Z",
   seminar2025Teams: "https://bit.ly/MS-Teams-Link-IA-CRC-Seminar-2025",
