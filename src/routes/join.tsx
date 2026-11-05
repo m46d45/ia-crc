@@ -36,6 +36,14 @@ function JoinPage() {
             </a>
           </Button>
         </article>
+        <article className="rounded-xl border border-line bg-surface p-6 md:col-span-2">
+          <p className="leading-relaxed text-muted">{p.whatsappBody}</p>
+          <Button asChild className="mt-5">
+            <a href={LINKS.whatsapp} target="_blank" rel="noopener noreferrer">
+              {p.whatsappCta}
+            </a>
+          </Button>
+        </article>
       </section>
       <section className="mx-auto max-w-6xl px-4 pb-8 sm:px-6">
         <h2 className="font-display text-2xl font-medium text-navy">{t.membersPage.supporters}</h2>

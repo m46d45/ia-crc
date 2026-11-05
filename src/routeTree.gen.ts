@@ -16,10 +16,12 @@ import { Route as ContactRouteImport } from './routes/contact'
 import { Route as JoinRouteImport } from './routes/join'
 import { Route as LoginRouteImport } from './routes/login'
 import { Route as MembersRouteImport } from './routes/members'
+import { Route as MembershipRouteImport } from './routes/membership'
 import { Route as PublicationsRouteImport } from './routes/publications'
 import { Route as ResearchRouteImport } from './routes/research'
 import { Route as ResourcesRouteImport } from './routes/resources'
 import { Route as StatisticsRouteImport } from './routes/statistics'
+import { Route as SupportersRouteImport } from './routes/supporters'
 import { Route as ApiPublicationsRouteImport } from './routes/api/publications'
 import { Route as ApiVisitsRouteImport } from './routes/api/visits'
 import { Route as NewsIndexRouteImport } from './routes/news/index'
@@ -61,6 +63,11 @@ const MembersRoute = MembersRouteImport.update({
   path: '/members',
   getParentRoute: () => rootRouteImport,
 } as any)
+const MembershipRoute = MembershipRouteImport.update({
+  id: '/membership',
+  path: '/membership',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const PublicationsRoute = PublicationsRouteImport.update({
   id: '/publications',
   path: '/publications',
@@ -79,6 +86,11 @@ const ResourcesRoute = ResourcesRouteImport.update({
 const StatisticsRoute = StatisticsRouteImport.update({
   id: '/statistics',
   path: '/statistics',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SupportersRoute = SupportersRouteImport.update({
+  id: '/supporters',
+  path: '/supporters',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ApiPublicationsRoute = ApiPublicationsRouteImport.update({
@@ -115,10 +127,12 @@ export interface FileRoutesByFullPath {
   '/join': typeof JoinRoute
   '/login': typeof LoginRoute
   '/members': typeof MembersRoute
+  '/membership': typeof MembershipRoute
   '/publications': typeof PublicationsRoute
   '/research': typeof ResearchRoute
   '/resources': typeof ResourcesRoute
   '/statistics': typeof StatisticsRoute
+  '/supporters': typeof SupportersRoute
   '/api/publications': typeof ApiPublicationsRoute
   '/api/visits': typeof ApiVisitsRoute
   '/news/$slug': typeof NewsSlugRoute
@@ -133,10 +147,12 @@ export interface FileRoutesByTo {
   '/join': typeof JoinRoute
   '/login': typeof LoginRoute
   '/members': typeof MembersRoute
+  '/membership': typeof MembershipRoute
   '/publications': typeof PublicationsRoute
   '/research': typeof ResearchRoute
   '/resources': typeof ResourcesRoute
   '/statistics': typeof StatisticsRoute
+  '/supporters': typeof SupportersRoute
   '/api/publications': typeof ApiPublicationsRoute
   '/api/visits': typeof ApiVisitsRoute
   '/news/$slug': typeof NewsSlugRoute
@@ -152,10 +168,12 @@ export interface FileRoutesById {
   '/join': typeof JoinRoute
   '/login': typeof LoginRoute
   '/members': typeof MembersRoute
+  '/membership': typeof MembershipRoute
   '/publications': typeof PublicationsRoute
   '/research': typeof ResearchRoute
   '/resources': typeof ResourcesRoute
   '/statistics': typeof StatisticsRoute
+  '/supporters': typeof SupportersRoute
   '/api/publications': typeof ApiPublicationsRoute
   '/api/visits': typeof ApiVisitsRoute
   '/news/$slug': typeof NewsSlugRoute
@@ -172,10 +190,12 @@ export interface FileRouteTypes {
     | '/join'
     | '/login'
     | '/members'
+    | '/membership'
     | '/publications'
     | '/research'
     | '/resources'
     | '/statistics'
+    | '/supporters'
     | '/api/publications'
     | '/api/visits'
     | '/news/$slug'
@@ -190,10 +210,12 @@ export interface FileRouteTypes {
     | '/join'
     | '/login'
     | '/members'
+    | '/membership'
     | '/publications'
     | '/research'
     | '/resources'
     | '/statistics'
+    | '/supporters'
     | '/api/publications'
     | '/api/visits'
     | '/news/$slug'
@@ -208,10 +230,12 @@ export interface FileRouteTypes {
     | '/join'
     | '/login'
     | '/members'
+    | '/membership'
     | '/publications'
     | '/research'
     | '/resources'
     | '/statistics'
+    | '/supporters'
     | '/api/publications'
     | '/api/visits'
     | '/news/$slug'
@@ -227,10 +251,12 @@ export interface RootRouteChildren {
   JoinRoute: typeof JoinRoute
   LoginRoute: typeof LoginRoute
   MembersRoute: typeof MembersRoute
+  MembershipRoute: typeof MembershipRoute
   PublicationsRoute: typeof PublicationsRoute
   ResearchRoute: typeof ResearchRoute
   ResourcesRoute: typeof ResourcesRoute
   StatisticsRoute: typeof StatisticsRoute
+  SupportersRoute: typeof SupportersRoute
   ApiPublicationsRoute: typeof ApiPublicationsRoute
   ApiVisitsRoute: typeof ApiVisitsRoute
   NewsSlugRoute: typeof NewsSlugRoute
@@ -289,6 +315,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof MembersRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/membership': {
+      id: '/membership'
+      path: '/membership'
+      fullPath: '/membership'
+      preLoaderRoute: typeof MembershipRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/publications': {
       id: '/publications'
       path: '/publications'
@@ -315,6 +348,13 @@ declare module '@tanstack/react-router' {
       path: '/statistics'
       fullPath: '/statistics'
       preLoaderRoute: typeof StatisticsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/supporters': {
+      id: '/supporters'
+      path: '/supporters'
+      fullPath: '/supporters'
+      preLoaderRoute: typeof SupportersRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/api/publications': {
@@ -363,10 +403,12 @@ const rootRouteChildren: RootRouteChildren = {
   JoinRoute: JoinRoute,
   LoginRoute: LoginRoute,
   MembersRoute: MembersRoute,
+  MembershipRoute: MembershipRoute,
   PublicationsRoute: PublicationsRoute,
   ResearchRoute: ResearchRoute,
   ResourcesRoute: ResourcesRoute,
   StatisticsRoute: StatisticsRoute,
+  SupportersRoute: SupportersRoute,
   ApiPublicationsRoute: ApiPublicationsRoute,
   ApiVisitsRoute: ApiVisitsRoute,
   NewsSlugRoute: NewsSlugRoute,
