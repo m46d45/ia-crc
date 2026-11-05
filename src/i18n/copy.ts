@@ -312,6 +312,10 @@ export const COPY = {
       id: "Indonesia",
       industry: "Industry",
       people: "researchers",
+      person: "researcher",
+      whatsappCta: "Join WhatsApp Group (IA-CRC General)",
+      whatsappBody:
+        "Approved members and supporters can join the IA-CRC General WhatsApp group.",
       empty: "No members match that search.",
       supporters: "Supporters",
       supporterPeople: "contacts",
@@ -331,6 +335,9 @@ export const COPY = {
       supporterBody:
         "For institutions that can offer research needs, expertise, data, laboratory or field access, or funding. Supporters sit alongside — not inside — the academic membership.",
       supporterCta: "Open the supporter form",
+      whatsappCta: "Join WhatsApp Group (IA-CRC General)",
+      whatsappBody:
+        "Approved members and supporters can join the IA-CRC General WhatsApp group.",
       note: "Forms open in Microsoft Forms. After you submit, the secretariat will place you in the relevant working group and communication channels.",
     },
     resourcesPage: {
@@ -702,6 +709,10 @@ export const COPY = {
       id: "Indonesia",
       industry: "Industri",
       people: "peneliti",
+      person: "peneliti",
+      whatsappCta: "Join WhatsApp Group (IA-CRC General)",
+      whatsappBody:
+        "Anggota dan pendukung yang telah disetujui dapat bergabung ke grup WhatsApp IA-CRC General.",
       empty: "Tidak ada anggota yang cocok.",
       supporters: "Pendukung",
       supporterPeople: "narahubung",
@@ -721,6 +732,9 @@ export const COPY = {
       supporterBody:
         "Bagi institusi yang dapat menyediakan kebutuhan riset, keahlian, data, akses laboratorium atau lapangan, atau pendanaan. Pendukung berdiri di samping — bukan di dalam — keanggotaan akademik.",
       supporterCta: "Buka formulir pendukung",
+      whatsappCta: "Join WhatsApp Group (IA-CRC General)",
+      whatsappBody:
+        "Anggota dan pendukung yang telah disetujui dapat bergabung ke grup WhatsApp IA-CRC General.",
       note: "Formulir terbuka di Microsoft Forms. Setelah Anda mengirim, sekretariat akan menempatkan Anda di kelompok kerja dan kanal komunikasi yang sesuai.",
     },
     resourcesPage: {

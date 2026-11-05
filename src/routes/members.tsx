@@ -1,7 +1,8 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useMemo, useState } from "react";
 import { PageIntro } from "@/components/site-shell";
-import { MEMBER_GROUPS, SUPPORTERS, type MemberGroup, type SupportOffer } from "@/data/site";
+import { Button } from "@/components/ui/button";
+import { LINKS, MEMBER_GROUPS, SUPPORTERS, type MemberGroup, type SupportOffer } from "@/data/site";
 import { useI18n } from "@/i18n/provider";
 
 export const Route = createFileRoute("/members")({ component: MembersPage });
@@ -52,6 +53,14 @@ function MembersPage() {
       </PageIntro>
 
       <section className="mx-auto max-w-6xl space-y-12 px-4 py-14 sm:px-6">
+        <div className="flex flex-col gap-4 rounded-xl border border-line bg-surface p-5 sm:flex-row sm:items-center sm:justify-between">
+          <p className="max-w-xl text-sm leading-relaxed text-muted">{t.membersPage.whatsappBody}</p>
+          <Button asChild>
+            <a href={LINKS.whatsapp} target="_blank" rel="noopener noreferrer">
+              {t.membersPage.whatsappCta}
+            </a>
+          </Button>
+        </div>
         {sections.map((sec) => {
           const list = groups.filter((g) => g.country === sec.key);
           if (list.length === 0) return null;
@@ -63,7 +72,8 @@ function MembersPage() {
                   <article key={g.org} className="rounded-xl border border-line bg-surface p-5">
                     <h3 className="font-medium text-navy">{g.org}</h3>
                     <p className="mt-1 text-xs uppercase tracking-wide text-subtle">
-                      {g.people.length} {t.membersPage.people}
+                      {g.people.length}{" "}
+                      {g.people.length === 1 ? t.membersPage.person : t.membersPage.people}
                     </p>
                     <ul className="mt-3 space-y-1 text-sm text-muted">
                       {g.people.map((name) => (

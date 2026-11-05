@@ -20,6 +20,7 @@ export const LINKS = {
   maps: "https://www.google.com/maps/search/?api=1&query=CIBE+Building+ITB+Jl.+Ganesha+No.+10+Bandung",
   goBuild: "https://sciforum.net/event/GOBUILD2026",
   concern: "https://concern.itb.ac.id/",
+  whatsapp: "https://chat.whatsapp.com/DSJXg9MzE87GTsn9lfURXO",
 } as const;
 
 export type Lang = "en" | "id";
@@ -531,6 +532,7 @@ export const MEMBER_GROUPS: MemberGroup[] = [
   { org: "RMIT University", country: "au", people: ["Bambang Trigunarsyah"] },
   { org: "University of Adelaide", country: "au", people: ["Indra Gunawan"] },
   { org: "University of New South Wales", country: "au", people: ["Riza Yosia Sunindijo"] },
+  { org: "Victoria University", country: "au", people: ["Melissa Chan"] },
   {
     org: "Institut Teknologi Bandung",
     country: "id",
@@ -560,7 +562,7 @@ export const MEMBER_GROUPS: MemberGroup[] = [
   {
     org: "Universitas Gadjah Mada",
     country: "id",
-    people: ["Tantri Handayani", "Kartika Nur Rahma", "Anggga T. Yudhistira"],
+    people: ["Tantri Handayani", "Kartika Nur Rahma", "Angga T. Yudhistira"],
   },
   { org: "Universitas Sriwijaya", country: "id", people: ["Heni Fitriani", "Erwin Gunawan"] },
   { org: "Institut Teknologi Sepuluh Nopember", country: "id", people: ["Farida Rachmawati"] },
