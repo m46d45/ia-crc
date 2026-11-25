@@ -74,6 +74,11 @@ function NewsArticle() {
               height={720}
               className="h-auto w-full rounded-md border border-line"
             />
+            {item.image.caption ? (
+              <figcaption className="mt-3 rounded-md bg-sand px-4 py-3 text-sm leading-relaxed text-navy">
+                {pickLang(item.image.caption, lang)}
+              </figcaption>
+            ) : null}
           </figure>
         ) : null}
         <div className="space-y-5 text-base leading-relaxed text-ink">

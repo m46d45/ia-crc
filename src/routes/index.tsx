@@ -1,7 +1,8 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { ArrowRight } from "lucide-react";
 import { useEffect, useMemo, useState } from "react";
-import { ACTIVITIES, LINKS, PHOTOS, PROJECTS, RWGS, STATS, newsByDate } from "@/data/site";
+import { InNumbers } from "@/components/in-numbers";
+import { ACTIVITIES, LINKS, PHOTOS, PROJECTS, RWGS, newsByDate } from "@/data/site";
 import { mergeNews, readLocalPublications, type Publication } from "@/data/publications";
 import { useI18n } from "@/i18n/provider";
 import { Button } from "@/components/ui/button";
@@ -61,16 +62,7 @@ function Home() {
         </div>
       </section>
 
-      <section className="border-b border-line bg-surface">
-        <div className="mx-auto grid max-w-6xl grid-cols-2 divide-x divide-line sm:grid-cols-3 lg:grid-cols-5">
-          {STATS.map((stat) => (
-            <div key={stat.label.en} className="px-4 py-7 sm:px-6 sm:py-8">
-              <p className="font-display text-3xl font-medium tracking-tight text-navy sm:text-4xl">{stat.value}</p>
-              <p className="mt-1 text-sm text-muted">{stat.label[lang]}</p>
-            </div>
-          ))}
-        </div>
-      </section>
+      <InNumbers />
 
       <section className="border-b border-line bg-cream">
         <div className="mx-auto max-w-6xl px-4 py-16 sm:px-6 sm:py-20">

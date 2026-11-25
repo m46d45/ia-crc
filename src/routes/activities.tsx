@@ -24,7 +24,7 @@ function ActivitiesPage() {
         <p>{t.activitiesPage.intro}</p>
         <div className="mt-6">
           <Button asChild variant="invert" size="sm">
-            <a href={LINKS.seminar2025Teams} target="_blank" rel="noreferrer">
+            <a href={LINKS.seminar2026Register} target="_blank" rel="noreferrer">
               {t.activitiesPage.seminarCta}
             </a>
           </Button>
