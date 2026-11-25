@@ -13,6 +13,7 @@ import { Route as IndexRouteImport } from './routes/index'
 import { Route as AboutRouteImport } from './routes/about'
 import { Route as ActivitiesRouteImport } from './routes/activities'
 import { Route as ContactRouteImport } from './routes/contact'
+import { Route as FeedbackRouteImport } from './routes/feedback'
 import { Route as JoinRouteImport } from './routes/join'
 import { Route as LoginRouteImport } from './routes/login'
 import { Route as MembersRouteImport } from './routes/members'
@@ -46,6 +47,11 @@ const ActivitiesRoute = ActivitiesRouteImport.update({
 const ContactRoute = ContactRouteImport.update({
   id: '/contact',
   path: '/contact',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const FeedbackRoute = FeedbackRouteImport.update({
+  id: '/feedback',
+  path: '/feedback',
   getParentRoute: () => rootRouteImport,
 } as any)
 const JoinRoute = JoinRouteImport.update({
@@ -124,6 +130,7 @@ export interface FileRoutesByFullPath {
   '/about': typeof AboutRoute
   '/activities': typeof ActivitiesRoute
   '/contact': typeof ContactRoute
+  '/feedback': typeof FeedbackRoute
   '/join': typeof JoinRoute
   '/login': typeof LoginRoute
   '/members': typeof MembersRoute
@@ -144,6 +151,7 @@ export interface FileRoutesByTo {
   '/about': typeof AboutRoute
   '/activities': typeof ActivitiesRoute
   '/contact': typeof ContactRoute
+  '/feedback': typeof FeedbackRoute
   '/join': typeof JoinRoute
   '/login': typeof LoginRoute
   '/members': typeof MembersRoute
@@ -165,6 +173,7 @@ export interface FileRoutesById {
   '/about': typeof AboutRoute
   '/activities': typeof ActivitiesRoute
   '/contact': typeof ContactRoute
+  '/feedback': typeof FeedbackRoute
   '/join': typeof JoinRoute
   '/login': typeof LoginRoute
   '/members': typeof MembersRoute
@@ -187,6 +196,7 @@ export interface FileRouteTypes {
     | '/about'
     | '/activities'
     | '/contact'
+    | '/feedback'
     | '/join'
     | '/login'
     | '/members'
@@ -207,6 +217,7 @@ export interface FileRouteTypes {
     | '/about'
     | '/activities'
     | '/contact'
+    | '/feedback'
     | '/join'
     | '/login'
     | '/members'
@@ -227,6 +238,7 @@ export interface FileRouteTypes {
     | '/about'
     | '/activities'
     | '/contact'
+    | '/feedback'
     | '/join'
     | '/login'
     | '/members'
@@ -248,6 +260,7 @@ export interface RootRouteChildren {
   AboutRoute: typeof AboutRoute
   ActivitiesRoute: typeof ActivitiesRoute
   ContactRoute: typeof ContactRoute
+  FeedbackRoute: typeof FeedbackRoute
   JoinRoute: typeof JoinRoute
   LoginRoute: typeof LoginRoute
   MembersRoute: typeof MembersRoute
@@ -292,6 +305,13 @@ declare module '@tanstack/react-router' {
       path: '/contact'
       fullPath: '/contact'
       preLoaderRoute: typeof ContactRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/feedback': {
+      id: '/feedback'
+      path: '/feedback'
+      fullPath: '/feedback'
+      preLoaderRoute: typeof FeedbackRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/join': {
@@ -400,6 +420,7 @@ const rootRouteChildren: RootRouteChildren = {
   AboutRoute: AboutRoute,
   ActivitiesRoute: ActivitiesRoute,
   ContactRoute: ContactRoute,
+  FeedbackRoute: FeedbackRoute,
   JoinRoute: JoinRoute,
   LoginRoute: LoginRoute,
   MembersRoute: MembersRoute,

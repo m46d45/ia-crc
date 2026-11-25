@@ -44,6 +44,13 @@ function JoinPage() {
             </a>
           </Button>
         </article>
+        <article className="rounded-xl border border-line bg-cream p-6 md:col-span-2">
+          <h2 className="font-display text-2xl font-medium text-navy">{p.feedbackTitle}</h2>
+          <p className="mt-3 max-w-2xl leading-relaxed text-muted">{p.feedbackBody}</p>
+          <Button asChild variant="outline" className="mt-5">
+            <Link to="/feedback">{p.feedbackCta}</Link>
+          </Button>
+        </article>
       </section>
       <section className="mx-auto max-w-6xl px-4 pb-8 sm:px-6">
         <h2 className="font-display text-2xl font-medium text-navy">{t.membersPage.supporters}</h2>

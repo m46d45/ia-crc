@@ -32,6 +32,7 @@ export function SiteFooter() {
               ["/resources", t.nav.resources],
               ["/members", t.nav.members],
               ["/join", t.nav.join],
+              ["/feedback", t.nav.feedback],
             ].map(([to, label]) => (
               <li key={to}>
                 <Link to={to} className="text-paper/80 hover:text-paper">

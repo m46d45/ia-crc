@@ -21,6 +21,8 @@ export const LINKS = {
   goBuild: "https://sciforum.net/event/GOBUILD2026",
   concern: "https://concern.itb.ac.id/",
   whatsapp: "https://chat.whatsapp.com/DSJXg9MzE87GTsn9lfURXO",
+  feedbackForm:
+    "https://docs.google.com/forms/d/e/1FAIpQLSem1O7vBKoNrucFY3xIZ-Nwdr6Wu_RDMxdOXbkYUy-giUQgfw/viewform",
 } as const;
 
 export type Lang = "en" | "id";
