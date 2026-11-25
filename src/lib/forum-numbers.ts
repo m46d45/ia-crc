@@ -69,6 +69,7 @@ export function forumNumbers(): ForumNumbers {
     talk: 0,
     conference: 0,
     meeting: 0,
+    booklaunch: 0,
   };
   for (const activity of ACTIVITIES) activitiesByKind[activity.kind] += 1;
 

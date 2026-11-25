@@ -184,7 +184,7 @@ export const PROJECTS: {
   },
 ];
 
-export type ActivityKind = "talk" | "workshop" | "seminar" | "conference" | "meeting";
+export type ActivityKind = "talk" | "workshop" | "seminar" | "conference" | "meeting" | "booklaunch";
 
 export const ACTIVITIES: {
   kind: ActivityKind;
@@ -226,7 +226,7 @@ export const ACTIVITIES: {
     href: "https://sciforum.net/event/GOBUILD2026",
   },
   {
-    kind: "meeting",
+    kind: "booklaunch",
     title: {
       en: "Book launch: Construction and Infrastructure Management in Indonesia (ITB Press)",
       id: "Peluncuran buku: Construction and Infrastructure Management in Indonesia (ITB Press)",

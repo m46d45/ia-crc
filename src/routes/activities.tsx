@@ -8,7 +8,7 @@ import { cn } from "@/lib/utils";
 
 export const Route = createFileRoute("/activities")({ component: ActivitiesPage });
 
-const FILTERS: Array<"all" | ActivityKind> = ["all", "seminar", "workshop", "talk", "conference", "meeting"];
+const FILTERS: Array<"all" | ActivityKind> = ["all", "seminar", "workshop", "talk", "conference", "meeting", "booklaunch"];
 
 function ActivitiesPage() {
   const { t, lang } = useI18n();

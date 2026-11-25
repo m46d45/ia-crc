@@ -25,6 +25,7 @@ export function InNumbers() {
     [numbers.activitiesByKind.talk, copy.talkOne, copy.talkMany],
     [numbers.activitiesByKind.conference, copy.conferenceOne, copy.conferenceMany],
     [numbers.activitiesByKind.meeting, copy.meetingOne, copy.meetingMany],
+    [numbers.activitiesByKind.booklaunch, copy.booklaunchOne, copy.booklaunchMany],
   ]
     .filter(([count]) => Number(count) > 0)
     .map(([count, one, many]) => phrase(Number(count), String(one), String(many)))
