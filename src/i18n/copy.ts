@@ -16,6 +16,7 @@ export const COPY = {
       resources: "Resources",
       contact: "Contact",
       join: "Join us",
+      feedback: "Feedback",
       signIn: "Sign in",
       more: "More",
       language: "Language",
@@ -386,6 +387,19 @@ export const COPY = {
       whatsappBody:
         "Approved members and supporters can join the IA-CRC General WhatsApp group.",
       note: "Forms open in Google Forms. After you submit, the secretariat will place you in the relevant working group and communication channels.",
+      feedbackTitle: "Feedback & Research Ideas",
+      feedbackBody:
+        "Anyone can share a problem from practice, a research question, an activity idea, or a possible source of support.",
+      feedbackCta: "Feedback & Research Ideas",
+    },
+    feedbackPage: {
+      title: "Feedback & Research Ideas",
+      who: "Anyone, member or not, can share problems seen in practice, research questions, ideas for activities, and possible funding or resources.",
+      time: "The form takes about 2–3 minutes.",
+      review: "IA-CRC reviews what is sent, and it may feed the topics for the annual joint research.",
+      open: "Open the form",
+      qrAlt: "QR code for the IA-CRC feedback and research ideas form",
+      qrCaption: "Scan to open the same form.",
     },
     resourcesPage: {
       title: "Resources",
@@ -459,6 +473,7 @@ export const COPY = {
       resources: "Sumber daya",
       contact: "Kontak",
       join: "Bergabung",
+      feedback: "Masukan",
       signIn: "Masuk",
       more: "Lainnya",
       language: "Bahasa",
@@ -830,6 +845,19 @@ export const COPY = {
       whatsappBody:
         "Anggota dan pendukung yang telah disetujui dapat bergabung ke grup WhatsApp IA-CRC General.",
       note: "Formulir terbuka di Google Forms. Setelah Anda mengirim, sekretariat akan menempatkan Anda di kelompok kerja dan kanal komunikasi yang sesuai.",
+      feedbackTitle: "Masukan dan Ide Riset",
+      feedbackBody:
+        "Siapa pun dapat menyampaikan persoalan di lapangan, pertanyaan riset, ide kegiatan, atau kemungkinan dukungan.",
+      feedbackCta: "Masukan dan Ide Riset",
+    },
+    feedbackPage: {
+      title: "Masukan dan Ide Riset",
+      who: "Siapa pun, anggota maupun bukan, dapat menyampaikan persoalan di lapangan, pertanyaan riset, ide kegiatan, serta kemungkinan pendanaan atau sumber daya.",
+      time: "Pengisian formulir memakan waktu sekitar 2–3 menit.",
+      review: "IA-CRC meninjau masukan yang masuk, dan masukan itu dapat menjadi bahan topik riset bersama tahunan.",
+      open: "Isi formulir",
+      qrAlt: "Kode QR untuk formulir masukan dan ide riset IA-CRC",
+      qrCaption: "Pindai untuk membuka formulir yang sama.",
     },
     resourcesPage: {
       title: "Sumber daya",

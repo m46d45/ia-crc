@@ -18,6 +18,7 @@ const NAV_MORE = [
   { to: "/activities", key: "activities" as const },
   { to: "/resources", key: "resources" as const },
   { to: "/statistics", key: "statistics" as const },
+  { to: "/feedback", key: "feedback" as const },
 ];
 
 const showAuthUi = import.meta.env.VITE_SHOW_AUTH_UI === "true";
