@@ -196,7 +196,7 @@ function Home() {
               <div className="sm:col-span-9">
                 <p className="text-xs font-medium uppercase tracking-[0.14em] text-blue">{t.kind[a.kind]}</p>
                 <p className="mt-1 font-medium text-navy">{a.title[lang]}</p>
-                <p className="mt-1 text-sm text-muted">{a.place[lang]}</p>
+                {a.place ? <p className="mt-1 text-sm text-muted">{a.place[lang]}</p> : null}
               </div>
             </li>
           ))}
