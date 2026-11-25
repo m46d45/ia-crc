@@ -191,7 +191,7 @@ export const ACTIVITIES: {
   title: { en: string; id: string };
   date: string;
   dateSort: string;
-  place: { en: string; id: string };
+  place?: { en: string; id: string };
   rwg?: string;
   href?: string;
 }[] = [
@@ -224,6 +224,16 @@ export const ACTIVITIES: {
     dateSort: "2026-11-18",
     place: { en: "Online (CET)", id: "Daring (CET)" },
     href: "https://sciforum.net/event/GOBUILD2026",
+  },
+  {
+    kind: "meeting",
+    title: {
+      en: "Book launch: Construction and Infrastructure Management in Indonesia (ITB Press)",
+      id: "Peluncuran buku: Construction and Infrastructure Management in Indonesia (ITB Press)",
+    },
+    date: "22 October 2026",
+    dateSort: "2026-10-22",
+    href: "https://www.itbpress.id/buku-gratis/#flipbook-df_50498/1/",
   },
   {
     kind: "seminar",

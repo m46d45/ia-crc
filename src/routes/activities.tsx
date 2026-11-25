@@ -65,7 +65,8 @@ function ActivitiesPage() {
                 <h2 className="mt-2 font-display text-xl font-medium text-navy">{a.title[lang]}</h2>
               )}
               <p className="mt-2 text-sm text-muted">
-                {a.date} · {a.place[lang]}
+                {a.date}
+                {a.place ? ` · ${a.place[lang]}` : ""}
               </p>
             </li>
           ))}
