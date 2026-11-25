@@ -9,6 +9,7 @@ import {
   XAxis,
   YAxis,
 } from "recharts";
+import { InNumbers } from "@/components/in-numbers";
 import { PageIntro } from "@/components/site-shell";
 import {
   mergePublications,
@@ -53,6 +54,8 @@ function StatisticsPage() {
       <PageIntro title={s.title}>
         <p>{s.intro}</p>
       </PageIntro>
+
+      <InNumbers />
 
       <section className="border-b border-line bg-cream">
         <div className="mx-auto max-w-6xl px-4 py-10 sm:px-6">

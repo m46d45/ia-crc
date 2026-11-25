@@ -34,7 +34,7 @@ export type NewsItem = {
   body: string[] | LocalizedParagraphs;
   href?: string;
   hrefLabel?: string | LocalizedText;
-  image?: { src: string; alt: string | LocalizedText };
+  image?: { src: string; alt: string | LocalizedText; caption?: string | LocalizedText };
 };
 
 const LOCAL_KEY = "ia-crc-publications-v1";
