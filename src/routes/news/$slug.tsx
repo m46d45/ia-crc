@@ -65,6 +65,44 @@ function NewsArticle() {
         </div>
       </article>
       <div className="mx-auto max-w-3xl px-4 py-12 sm:px-6">
+        {item.gallery && item.gallery.length > 0 ? (
+          <div className="mb-10">
+            <figure>
+              <img
+                src={item.gallery[0].src}
+                alt={pickLang(item.gallery[0].alt, lang)}
+                width={1600}
+                height={900}
+                className="h-auto w-full rounded-md border border-line"
+              />
+              {item.gallery[0].caption ? (
+                <figcaption className="mt-3 text-sm leading-relaxed text-muted">
+                  {pickLang(item.gallery[0].caption, lang)}
+                </figcaption>
+              ) : null}
+            </figure>
+            {item.gallery.length > 1 ? (
+              <ul className="mt-3 grid gap-3 sm:grid-cols-2">
+                {item.gallery.slice(1).map((photo) => (
+                  <li key={photo.src}>
+                    <figure>
+                      <img
+                        src={photo.src}
+                        alt={pickLang(photo.alt, lang)}
+                        className="aspect-[16/10] w-full rounded-md border border-line object-cover"
+                      />
+                      {photo.caption ? (
+                        <figcaption className="mt-2 text-sm leading-relaxed text-muted">
+                          {pickLang(photo.caption, lang)}
+                        </figcaption>
+                      ) : null}
+                    </figure>
+                  </li>
+                ))}
+              </ul>
+            ) : null}
+          </div>
+        ) : null}
         {item.image ? (
           <figure className="mb-10">
             <img

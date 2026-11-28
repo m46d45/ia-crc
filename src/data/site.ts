@@ -394,6 +394,12 @@ export const NEWS: {
     alt: { en: string; id: string };
     caption?: { en: string; id: string };
   };
+  /** First item is the lead photo. Append later photos to grow the gallery. */
+  gallery?: {
+    src: string;
+    alt: { en: string; id: string };
+    caption?: { en: string; id: string };
+  }[];
 }[] = [
   {
     slug: "ia-crc-seminar-2026-bali",
@@ -432,6 +438,15 @@ export const NEWS: {
         "Anggota diminta mengirim usulan penggabungan RWG dan topik riset 2027. Proposal hibah AII 2027–2028, dipimpin La Trobe University bersama ITB, Deakin University, dan University of Melbourne, sedang disiapkan.",
       ],
     },
+    gallery: [
+      {
+        src: "/images/seminar-2026-group.jpg",
+        alt: {
+          en: "Participants of the IA-CRC Seminar 2026 in Sanur, Bali",
+          id: "Peserta Seminar IA-CRC 2026 di Sanur, Bali",
+        },
+      },
+    ],
     image: {
       src: "/images/ia-crc-seminar-2026-poster.jpg",
       alt: { en: "IA-CRC Seminar 2026 poster", id: "Poster Seminar IA-CRC 2026" },
