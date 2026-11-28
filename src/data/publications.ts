@@ -35,6 +35,8 @@ export type NewsItem = {
   href?: string;
   hrefLabel?: string | LocalizedText;
   image?: { src: string; alt: string | LocalizedText; caption?: string | LocalizedText };
+  /** First item is the lead photo. Later items render as a gallery. */
+  gallery?: { src: string; alt: string | LocalizedText; caption?: string | LocalizedText }[];
 };
 
 const LOCAL_KEY = "ia-crc-publications-v1";

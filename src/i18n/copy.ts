@@ -349,7 +349,7 @@ export const COPY = {
       intro:
         "Seminars, workshops, virtual talks, and an annual meeting in the first week of November. Auxiliary activities are proposed by members and agreed by the relevant coordinator.",
       all: "All",
-      seminarCta: "Register for Seminar 2026",
+      seminarCta: "Seminar 2026 summary",
     },
     membersPage: {
       title: "Members",
@@ -807,7 +807,7 @@ export const COPY = {
       intro:
         "Seminar, lokakarya, kuliah virtual, dan rapat tahunan pada pekan pertama November. Kegiatan pendukung diusulkan anggota dan disetujui koordinator terkait.",
       all: "Semua",
-      seminarCta: "Daftar Seminar 2026",
+      seminarCta: "Ringkasan Seminar 2026",
     },
     membersPage: {
       title: "Anggota",

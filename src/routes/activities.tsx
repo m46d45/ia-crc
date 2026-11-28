@@ -1,8 +1,8 @@
-import { createFileRoute } from "@tanstack/react-router";
+import { createFileRoute, Link } from "@tanstack/react-router";
 import { useMemo, useState } from "react";
 import { PageIntro } from "@/components/site-shell";
 import { Button } from "@/components/ui/button";
-import { ACTIVITIES, LINKS, PHOTOS, type ActivityKind } from "@/data/site";
+import { ACTIVITIES, PHOTOS, type ActivityKind } from "@/data/site";
 import { useI18n } from "@/i18n/provider";
 import { cn } from "@/lib/utils";
 
@@ -24,9 +24,9 @@ function ActivitiesPage() {
         <p>{t.activitiesPage.intro}</p>
         <div className="mt-6">
           <Button asChild variant="invert" size="sm">
-            <a href={LINKS.seminar2026Register} target="_blank" rel="noreferrer">
+            <Link to="/news/$slug" params={{ slug: "ia-crc-seminar-2026-bali" }}>
               {t.activitiesPage.seminarCta}
-            </a>
+            </Link>
           </Button>
         </div>
       </PageIntro>

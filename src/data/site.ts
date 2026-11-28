@@ -203,7 +203,7 @@ export const ACTIVITIES: {
     date: "28 November 2026",
     dateSort: "2026-11-28",
     place: { en: "Mercure Resort Sanur, Bali (hybrid)", id: "Mercure Resort Sanur, Bali (hibrida)" },
-    href: LINKS.seminar2026Register,
+    href: "/news/ia-crc-seminar-2026-bali",
   },
   {
     kind: "conference",
@@ -394,42 +394,65 @@ export const NEWS: {
     alt: { en: string; id: string };
     caption?: { en: string; id: string };
   };
+  /** First item is the lead photo. Append later photos to grow the gallery. */
+  gallery?: {
+    src: string;
+    alt: { en: string; id: string };
+    caption?: { en: string; id: string };
+  }[];
 }[] = [
   {
     slug: "ia-crc-seminar-2026-bali",
-    date: { en: "1 November 2026", id: "1 November 2026" },
-    dateSort: "2026-11-01",
+    date: { en: "28 November 2026", id: "28 November 2026" },
+    dateSort: "2026-11-28",
     category: "announcement",
     title: {
-      en: "IA-CRC Seminar 2026 in Bali: Saturday, 28 November 2026",
-      id: "Seminar IA-CRC 2026 di Bali: Sabtu, 28 November 2026",
+      en: "IA-CRC Seminar 2026 held in Bali",
+      id: "Seminar IA-CRC 2026 telah berlangsung di Bali",
     },
     excerpt: {
-      en: "The annual IA-CRC seminar will be held in hybrid format at Mercure Resort Sanur, Bali. Registration has been extended to 27 November 2026.",
-      id: "Seminar tahunan IA-CRC akan diadakan secara hibrida di Mercure Resort Sanur, Bali. Pendaftaran diperpanjang hingga 27 November 2026.",
+      en: "The seminar was held on Saturday, 28 November 2026, at Mercure Resort Sanur, Bali, in a hybrid format. Members reviewed the past year and discussed joint research for 2027.",
+      id: "Seminar telah berlangsung pada Sabtu, 28 November 2026, di Mercure Resort Sanur, Bali, secara hibrida. Anggota meninjau setahun terakhir dan membahas riset bersama untuk 2027.",
     },
     body: {
       en: [
-        "The Indonesia–Australia Collaborative Research in Construction (IA-CRC) will hold the IA-CRC Seminar 2026 on Saturday, 28 November 2026, from 09:00 to 13:00 WITA (Central Indonesia Time, UTC+8), at Mercure Resort Sanur, Bali. The seminar is hybrid, so members can join on site or online. Lunch follows from 13:00 to 14:00.",
-        "The seminar is a half-day forum for IA-CRC members and invited colleagues from Udayana University and the surrounding area. It will review IA-CRC activities in 2026, present research on resilient and sustainable infrastructure, discuss collaborative writing, and set the agenda for 2027. The 2025 seminar was held online; this year’s seminar follows ConCERN-3 in Bandung.",
-        "Programme (WITA): 09:00–09:15 Registration. 09:15–09:30 Opening — Biemo W. Soemardi. 09:30–10:15 Report on IA-CRC activities — Muhamad Abduh. 10:15–11:00 Research on resilient and sustainable infrastructure — Reini D. Wirahadikusumah. 11:00–11:30 Indonesian construction industry issues (article proposal for The Conversation) — Toong Khuan Chan and Igor Martek. 11:30–12:00 Research Working Group reports: 2026 activities and ongoing proposals — RWG 01–08 coordinators. 12:00–12:45 Discussion: new joint research for 2027 (up to three topics) — moderated by Muhamad Abduh. 12:45–13:00 Closing and group photo. 13:00–14:00 Lunch.",
-        "Registration was extended from 21 November and now closes on 27 November 2026. The online joining link will be sent to registered participants.",
+        "The IA-CRC Seminar 2026 was held on Saturday, 28 November 2026, at Mercure Resort Sanur, Bali, in a hybrid format.",
+        "All members of KK KMI ITB attended, together with Toong Khuan Chan (La Trobe University) and Igor Martek (Deakin University) in person, colleagues from Universitas Udayana, and further participants online.",
+        "The seminar reviewed IA-CRC activities over the past year, received reports from the research working groups (RWGs), and discussed joint research directions for 2027.",
+        "Reini D. Wirahadikusumah presented a research agenda on disaster-resilient infrastructure in Indonesia. The agenda covers 15 research areas. The largest gaps are design compliance, governance and procurement, financing, and research–industry links.",
+        "Toong Khuan Chan and Igor Martek presented issues facing the Indonesian construction industry: contractor registration and compliance, governance, the financial condition of state-owned contractors, and research with tangible benefit to industry and education.",
+        "RWG-01 Productivity and Lean Construction (coordinator Muhamad Abduh) reported a bibliometric study of lean construction publications and the position of AI in relation to lean, with Gao Shang (University of Melbourne). The work is planned for IGLC 35, Munich, July 2027.",
+        "Muh Abdhy Gazali HS presented a proposed input–output analysis of the construction sector.",
+        "The closing discussion, chaired by Muhamad Abduh, recorded these outcomes. The number of RWGs will be reduced from eight to fewer, possibly five, and merger proposals are awaited from members. A Construction Education stream has been proposed. New coordinators will be appointed for the new RWGs. Each new RWG will prepare its own research roadmap with new and existing research topics.",
+        "Members are to submit RWG merger proposals and 2027 research topics. An AII 2027–2028 grant application, led by La Trobe University with ITB, Deakin University and the University of Melbourne, is in preparation.",
       ],
       id: [
-        "Indonesia–Australia Collaborative Research in Construction (IA-CRC) akan menyelenggarakan Seminar IA-CRC 2026 pada Sabtu, 28 November 2026, pukul 09.00–13.00 WITA (UTC+8), di Mercure Resort Sanur, Bali. Seminar diadakan secara hibrida sehingga anggota dapat hadir di lokasi atau daring. Makan siang pukul 13.00–14.00.",
-        "Seminar ini adalah forum setengah hari bagi anggota IA-CRC dan kolega undangan dari Universitas Udayana dan sekitarnya. Seminar akan meninjau kegiatan IA-CRC tahun 2026, menyajikan riset tentang infrastruktur yang tangguh dan berkelanjutan, membahas penulisan bersama, dan menyusun agenda tahun 2027. Seminar 2025 diadakan daring; seminar tahun ini diadakan setelah ConCERN-3 di Bandung.",
-        "Susunan acara (WITA): 09.00–09.15 Registrasi. 09.15–09.30 Pembukaan — Biemo W. Soemardi. 09.30–10.15 Laporan kegiatan IA-CRC — Muhamad Abduh. 10.15–11.00 Riset infrastruktur yang tangguh dan berkelanjutan — Reini D. Wirahadikusumah. 11.00–11.30 Isu industri konstruksi Indonesia (usulan artikel untuk The Conversation) — Toong Khuan Chan dan Igor Martek. 11.30–12.00 Laporan Kelompok Kerja Riset: kegiatan 2026 dan usulan riset berjalan — koordinator RWG 01–08. 12.00–12.45 Diskusi riset bersama 2027 (maksimal tiga topik) — moderator Muhamad Abduh. 12.45–13.00 Penutupan dan foto bersama. 13.00–14.00 Makan siang.",
-        "Pendaftaran diperpanjang dari 21 November dan kini ditutup pada 27 November 2026. Tautan untuk bergabung daring akan dikirim kepada peserta terdaftar.",
+        "Seminar IA-CRC 2026 telah berlangsung pada Sabtu, 28 November 2026, di Mercure Resort Sanur, Bali, secara hibrida.",
+        "Hadir seluruh anggota KK KMI ITB, Toong Khuan Chan (La Trobe University) dan Igor Martek (Deakin University) secara luring, kolega dari Universitas Udayana, serta peserta lain secara daring.",
+        "Seminar meninjau kegiatan IA-CRC setahun terakhir, menerima laporan kelompok kerja riset (RWG), dan membahas arah riset bersama untuk 2027.",
+        "Reini D. Wirahadikusumah menyajikan agenda riset infrastruktur yang tangguh terhadap bencana di Indonesia. Agenda ini mencakup 15 bidang riset. Kesenjangan terbesar ada pada kepatuhan desain, tata kelola dan pengadaan, pembiayaan, serta tautan riset–industri.",
+        "Toong Khuan Chan dan Igor Martek menyajikan isu industri konstruksi Indonesia: registrasi dan kepatuhan kontraktor, tata kelola, kondisi keuangan kontraktor milik negara, serta riset yang memberi manfaat nyata bagi industri dan pendidikan.",
+        "RWG-01 Productivity and Lean Construction (koordinator Muhamad Abduh) melaporkan studi bibliometrik publikasi lean construction dan posisi AI terhadap lean, bersama Gao Shang (University of Melbourne). Pekerjaan ini direncanakan untuk IGLC 35, Munich, Juli 2027.",
+        "Muh Abdhy Gazali HS menyajikan usulan analisis input–output sektor konstruksi.",
+        "Diskusi penutup, dipimpin Muhamad Abduh, mencatat hasil ini. Jumlah RWG akan dikurangi dari delapan menjadi lebih sedikit, mungkin lima, dan usulan penggabungan ditunggu dari anggota. Sebuah jalur Construction Education telah diusulkan. Koordinator baru akan ditunjuk untuk RWG yang baru. Setiap RWG baru akan menyusun peta jalan risetnya sendiri, dengan topik riset baru dan yang sudah ada.",
+        "Anggota diminta mengirim usulan penggabungan RWG dan topik riset 2027. Proposal hibah AII 2027–2028, dipimpin La Trobe University bersama ITB, Deakin University, dan University of Melbourne, sedang disiapkan.",
       ],
     },
-    href: LINKS.seminar2026Register,
-    hrefLabel: { en: "Register for IA-CRC Seminar 2026", id: "Daftar Seminar IA-CRC 2026" },
+    gallery: [
+      {
+        src: "/images/seminar-2026-group.jpg",
+        alt: {
+          en: "Participants of the IA-CRC Seminar 2026 in Sanur, Bali",
+          id: "Peserta Seminar IA-CRC 2026 di Sanur, Bali",
+        },
+      },
+    ],
     image: {
       src: "/images/ia-crc-seminar-2026-poster.jpg",
       alt: { en: "IA-CRC Seminar 2026 poster", id: "Poster Seminar IA-CRC 2026" },
       caption: {
-        en: "The poster still shows 21 November. Registration has been extended to 27 November 2026.",
-        id: "Poster masih menampilkan 21 November. Pendaftaran diperpanjang hingga 27 November 2026.",
+        en: "Held on 28 November 2026 at Mercure Resort Sanur, Bali.",
+        id: "Telah berlangsung pada 28 November 2026 di Mercure Resort Sanur, Bali.",
       },
     },
   },
